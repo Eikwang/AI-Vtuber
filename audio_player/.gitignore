@@ -1,0 +1,6 @@
+pkg/
+log/*.txt
+
+*.pyc
+
+out/*.wav

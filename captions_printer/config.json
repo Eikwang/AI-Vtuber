@@ -1,0 +1,16 @@
+{
+  "bg_color": "#ffffff",
+  "body_bg_color": "#ffffff",
+  "font_color": "#000000",
+  "gradient_show_time": 10,
+  "hide_time": 10,
+  "show_mode": "2",
+  "show_over_hide_time": 20000,
+  "single_char_show_time": 25,
+  "subtitle_bg_height": "200px",
+  "subtitle_bg_width": "600px",
+  "subtitle_font_family": "黑体",
+  "subtitle_font_size": "24px",
+  "subtitle_font_weight": "400",
+  "subtitle_webkit_text_stroke": "0px #fff"
+}
