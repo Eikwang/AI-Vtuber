@@ -1,0 +1,346 @@
+{
+  "url": "https://www.douyu.com/beta/1126960?dyshid=12249dd2-9ff61a4265fc8348b8a7bd7000051701",
+  "test_duration": 30,
+  "script_status": {
+    "danmakuListener": true,
+    "resourceManager": true,
+    "listenerStatus": "disconnected",
+    "platform": "douyu",
+    "version": "5.0",
+    "managedObjects": 0,
+    "barrageContainer": {
+      "found": true,
+      "id": "js-barrage-list",
+      "childCount": 27
+    }
+  },
+  "danmaku_messages": [],
+  "console_logs": [
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "getLegacyFirstStream 602"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "jsh WebEncrypt start 602.8000000044703"
+    },
+    {
+      "timestamp": 0,
+      "type": "error",
+      "text": "\u001b[90m[20:11:59]\u001b[39m \u001b[31mERROR\u001b[39m \u001b[40mdouyu-web:\u001b[49m [业务异常请求]https://www.douyu.com/wgapi/livenc/liveweb/follow/top3"
+    },
+    {
+      "timestamp": 0,
+      "type": "error",
+      "text": "\u001b[90m[20:11:59]\u001b[39m \u001b[31mERROR\u001b[39m \u001b[40mdouyu-web:\u001b[49m Error: 用户未登陆或token已过期\n    at https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/chunks/249-828cb2ac9930e870.js:1:26034\n    at Object.next (https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/chunks/399-66e5a6a5c0275c31.js:1:261058)\n    at n (https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/chunks/399-66e5a6a5c0275c31.js:1:272732)\n    at u (https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/chunks/399-66e5a6a5c0275c31.js:1:272929)"
+    },
+    {
+      "timestamp": 0,
+      "type": "warning",
+      "text": "The resource https://stream-changsha-ct-113-240-120-67.edgesrv.com/live/1126960rFIy7bPzC_4000.flv?wsAuth=8098a7474bd7bc44ae1bb3d9fb3063f2&token=web-h5-0-1126960-97b8314bb93dc18a30f5c7acdb9eb2fa48da90db2769fad2&logo=0&expire=0&did=10000000000000000000000000001501&pt=2&st=0&sid=421347337&mcid2=0&origin=dy&fcdn=scdn&fo=0&mix=0&isp=scdncthuncshw was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 0,
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_CLOSED"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "当前环境：VITE_BUILT_TIME 2025年09月23日星期二 06:10:04.729"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "frame on registerListener"
+    },
+    {
+      "timestamp": 0,
+      "type": "debug",
+      "text": "channel received on listener[invoke]"
+    },
+    {
+      "timestamp": 0,
+      "type": "debug",
+      "text": "channel received on listener[sync_method]"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "frame on sync_method {getGameSession: }"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "%c[获取静态配置成功] %o border-radius: 3px; background: #ccc; color: #ff5d23; font-weight: bold; {actAlias: 20250521OPFOY, startTime: 1758081600, endTime: 1772294399, condType: Object, validCond: Array(6)}"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "1 {} {} {}"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "allPrizes [] 0"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "After_GET_SCORE"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "1 {} {} {}"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "allPrizes [] 0"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "CppRes_ActivityTask {type: AnchorInfo_ActivityTask, data: Object}"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "CppRes_ActivityTask {type: UserInfo_ActivityTask, data: Object}"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "1 {} {} {}"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "allPrizes [] 0"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "frame on invoke {apiName: getGameSession, args: Object}"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "1 {} {} {}"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "allPrizes [] 0"
+    },
+    {
+      "timestamp": 0,
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_CLOSED"
+    },
+    {
+      "timestamp": 0,
+      "type": "error",
+      "text": "batchBagInfos {error: -1, data: undefined, message: 用户未登陆或token已过期}"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "batchBagInfos [Object, Object, Object, Object, Object, Object, Object]"
+    },
+    {
+      "timestamp": 0,
+      "type": "log",
+      "text": "frame on invoke {apiName: getGameSession, args: Object}"
+    },
+    {
+      "timestamp": 0,
+      "type": "error",
+      "text": "Error: rate limit exceeded\n    at https://game.weixin.qq.com/cgi-bin/minigame/static/pc-gamesdk/wxgamesdkframe.html:1:10761\n    at Generator.next (<anonymous>)\n    at https://game.weixin.qq.com/cgi-bin/minigame/static/pc-gamesdk/wxgamesdkframe.html:1:9945\n    at new Promise (<anonymous>)\n    at n (https://game.weixin.qq.com/cgi-bin/minigame/static/pc-gamesdk/wxgamesdkframe.html:1:9690)\n    at Object.send (https://game.weixin.qq.com/cgi-bin/minigame/static/pc-gamesdk/wxgamesdkframe.html:1:10603)\n    at https://game.weixin.qq.com/cgi-bin/minigame/static/pc-gamesdk/wxgamesdkframe.html:1:8910\n    at Generator.next (<anonymous>)\n    at https://game.weixin.qq.com/cgi-bin/minigame/static/pc-gamesdk/wxgamesdkframe.html:1:8414\n    at new Promise (<anonymous>)"
+    },
+    {
+      "timestamp": 0.5737287998199463,
+      "type": "error",
+      "text": "WebSocket connection to 'ws://127.0.0.1:8765/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "timestamp": 0.5737287998199463,
+      "type": "error",
+      "text": "\u001b[90m[20:12:06]\u001b[39m \u001b[31mERROR\u001b[39m \u001b[40mdouyu-web:\u001b[49m WebSocket连接错误: Event"
+    },
+    {
+      "timestamp": 3.5972938537597656,
+      "type": "error",
+      "text": "WebSocket connection to 'ws://127.0.0.1:8765/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "timestamp": 3.5972938537597656,
+      "type": "error",
+      "text": "\u001b[90m[20:12:09]\u001b[39m \u001b[31mERROR\u001b[39m \u001b[40mdouyu-web:\u001b[49m WebSocket连接错误: Event"
+    },
+    {
+      "timestamp": 4.441966533660889,
+      "type": "error",
+      "text": "Error: timeout\n    at https://game.weixin.qq.com/cgi-bin/minigame/static/pc-gamesdk/wxgamesdkframe.html:1:8047\n    at Generator.throw (<anonymous>)\n    at a (https://game.weixin.qq.com/cgi-bin/minigame/static/pc-gamesdk/wxgamesdkframe.html:1:7222)"
+    },
+    {
+      "timestamp": 7.6267478466033936,
+      "type": "error",
+      "text": "WebSocket connection to 'ws://127.0.0.1:8765/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "timestamp": 7.627248525619507,
+      "type": "error",
+      "text": "\u001b[90m[20:12:13]\u001b[39m \u001b[31mERROR\u001b[39m \u001b[40mdouyu-web:\u001b[49m WebSocket连接错误: Event"
+    },
+    {
+      "timestamp": 13.661104440689087,
+      "type": "error",
+      "text": "WebSocket connection to 'ws://127.0.0.1:8765/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "timestamp": 13.662107706069946,
+      "type": "error",
+      "text": "\u001b[90m[20:12:19]\u001b[39m \u001b[31mERROR\u001b[39m \u001b[40mdouyu-web:\u001b[49m WebSocket连接错误: Event"
+    },
+    {
+      "timestamp": 14.976495504379272,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/15bfd7fd6709133e.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 14.976495504379272,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/de33f87ee3beac7f.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 14.977000713348389,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/9a8aa32eefaa8883.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 14.977000713348389,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/d69316e99be7b784.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 14.977000713348389,
+      "type": "warning",
+      "text": "The resource https://stream-changsha-ct-113-240-120-67.edgesrv.com/live/1126960rFIy7bPzC_4000.flv?wsAuth=8098a7474bd7bc44ae1bb3d9fb3063f2&token=web-h5-0-1126960-97b8314bb93dc18a30f5c7acdb9eb2fa48da90db2769fad2&logo=0&expire=0&did=10000000000000000000000000001501&pt=2&st=0&sid=421347337&mcid2=0&origin=dy&fcdn=scdn&fo=0&mix=0&isp=scdncthuncshw was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 14.977000713348389,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/d8311849f1485156.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 14.977000713348389,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/5cb483e84182c578.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 14.97800612449646,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/d4c62eefde1c88dd.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 14.97800612449646,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/4dadd74475e44ce5.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 14.978512525558472,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/c4e64ea968872d29.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 14.979010820388794,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/f01d52806c064d2c.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 23.699824571609497,
+      "type": "error",
+      "text": "WebSocket connection to 'ws://127.0.0.1:8765/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "timestamp": 23.700324535369873,
+      "type": "error",
+      "text": "\u001b[90m[20:12:29]\u001b[39m \u001b[31mERROR\u001b[39m \u001b[40mdouyu-web:\u001b[49m WebSocket连接错误: Event"
+    },
+    {
+      "timestamp": 29.04299831390381,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/15bfd7fd6709133e.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 29.043503999710083,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/de33f87ee3beac7f.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 29.043503999710083,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/9a8aa32eefaa8883.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 29.043503999710083,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/d69316e99be7b784.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 29.043503999710083,
+      "type": "warning",
+      "text": "The resource https://stream-changsha-ct-113-240-120-67.edgesrv.com/live/1126960rFIy7bPzC_4000.flv?wsAuth=8098a7474bd7bc44ae1bb3d9fb3063f2&token=web-h5-0-1126960-97b8314bb93dc18a30f5c7acdb9eb2fa48da90db2769fad2&logo=0&expire=0&did=10000000000000000000000000001501&pt=2&st=0&sid=421347337&mcid2=0&origin=dy&fcdn=scdn&fo=0&mix=0&isp=scdncthuncshw was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 29.044509649276733,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/d8311849f1485156.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 29.04501438140869,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/5cb483e84182c578.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 29.04501438140869,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/d4c62eefde1c88dd.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 29.04501438140869,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/4dadd74475e44ce5.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 29.04501438140869,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/c4e64ea968872d29.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    },
+    {
+      "timestamp": 29.04501438140869,
+      "type": "warning",
+      "text": "The resource https://shark2.douyucdn.cn/front-publish/douyu-web-master/_next/static/css/f01d52806c064d2c.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    }
+  ],
+  "errors": [
+    {
+      "timestamp": 0,
+      "error": "用户未登陆或token已过期"
+    },
+    {
+      "timestamp": 0,
+      "error": "Wxgamesdk 加载超时"
+    },
+    {
+      "timestamp": 0,
+      "error": "Cannot read properties of undefined (reading '20250521OPFOY_bag155')"
+    }
+  ],
+  "total_danmaku_count": 0,
+  "actual_duration": 30.29206132888794
+}

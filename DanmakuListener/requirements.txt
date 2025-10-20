@@ -1,0 +1,27 @@
+# DanmakuListener 依赖包
+# 核心框架
+aiohttp>=3.8.0
+aiohttp-cors>=0.7.0
+websockets>=10.0
+asyncio>=3.4.3
+
+# 浏览器自动化
+playwright>=1.30.0
+
+# 抖音直播伴侣监听依赖
+mitmproxy>=9.0.0
+
+# 数据处理
+json5>=0.9.0
+requests>=2.28.0
+
+# 日志和配置
+PyYAML>=6.0
+coloredlogs>=15.0
+
+# 系统工具
+psutil>=5.9.0  # 内存和进程监控
+watchdog>=2.1.0
+
+# 开发和调试
+ipython>=8.0.0

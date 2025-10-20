@@ -3,6 +3,7 @@ import sys, os, json, subprocess, importlib, re, threading, signal
 import traceback
 import time
 import asyncio
+import argparse
 from urllib.parse import urljoin
 from pathlib import Path
 
@@ -182,9 +183,14 @@ def textarea_data_change(data):
             \@@@@`   =@@@@^      ,\@@@@@@@@[   .@@@@^\@@@@@[    .\@@@@@[=@@@@^  @@@@@.    
             
 """
+# 解析命令行参数
+parser = argparse.ArgumentParser(description='AI Vtuber WebUI')
+parser.add_argument('--port', type=int, help='WebUI端口号')
+args = parser.parse_args()
+
 # 配置
 webui_ip = config.get("webui", "ip")
-webui_port = config.get("webui", "port")
+webui_port = args.port if args.port else config.get("webui", "port")
 webui_title = config.get("webui", "title")
 
 # CSS
@@ -930,6 +936,10 @@ def goto_func_page():
         except Exception as e:
             logger.error(traceback.format_exc())
             return CommonResult(code=-1, message=f"失败！{e}")
+
+    # 弹幕管理API已移除，功能已独立至danmaku_server
+    # 弹幕管理API已移除，功能已独立至danmaku_server
+    # 获取弹幕连接状态API已移除，功能已独立至danmaku_server
 
     # fish speech 获取说话人数据
     async def fish_speech_web_get_ref_data(speaker):
@@ -1821,6 +1831,7 @@ def goto_func_page():
                             "comment": (input_filter_priority_mapping_comment, 'int'),
                             "song": (input_filter_priority_mapping_song, 'int'),
                             "read_comment": (input_filter_priority_mapping_read_comment, 'int'),
+                            "assistant_anchor_read_comment": (input_filter_priority_mapping_assistant_anchor_read_comment, 'int'),
                             "entrance": (input_filter_priority_mapping_entrance, 'int'),
                             "gift": (input_filter_priority_mapping_gift, 'int'),
                             "follow": (input_filter_priority_mapping_follow, 'int'),
@@ -2028,33 +2039,42 @@ def goto_func_page():
 
                 # 闲时任务
                 if config.get("webui", "show_card", "common_config", "idle_time_task"):
-                    config_data["idle_time_task"]["enable"] = switch_idle_time_task_enable.value
-                    config_data["idle_time_task"]["type"] = select_idle_time_task_type.value
+                    if "idle_time_task_config" not in config_data:
+                        config_data["idle_time_task_config"] = {}
+                    config_data["idle_time_task_config"]["enable"] = switch_idle_time_task_enable.value
+                    config_data["idle_time_task_config"]["type"] = select_idle_time_task_type.value
 
-                    config_data["idle_time_task"]["min_msg_queue_len_to_trigger"] = int(input_idle_time_task_idle_min_msg_queue_len_to_trigger.value)
-                    config_data["idle_time_task"]["min_audio_queue_len_to_trigger"] = int(input_idle_time_task_idle_min_audio_queue_len_to_trigger.value)
+                    config_data["idle_time_task_config"]["min_msg_queue_len_to_trigger"] = int(input_idle_time_task_idle_min_msg_queue_len_to_trigger.value)
+                    config_data["idle_time_task_config"]["min_audio_queue_len_to_trigger"] = int(input_idle_time_task_idle_min_audio_queue_len_to_trigger.value)
 
-                    config_data["idle_time_task"]["idle_time_min"] = int(input_idle_time_task_idle_time_min.value)
-                    config_data["idle_time_task"]["idle_time_max"] = int(input_idle_time_task_idle_time_max.value)
-                    config_data["idle_time_task"]["wait_play_audio_num_threshold"] = int(input_idle_time_task_wait_play_audio_num_threshold.value)
-                    config_data["idle_time_task"]["idle_time_reduce_to"] = int(input_idle_time_task_idle_time_reduce_to.value)
+                    config_data["idle_time_task_config"]["idle_time_min"] = int(input_idle_time_task_idle_time_min.value)
+                    config_data["idle_time_task_config"]["idle_time_max"] = int(input_idle_time_task_idle_time_max.value)
+                    config_data["idle_time_task_config"]["wait_play_audio_num_threshold"] = int(input_idle_time_task_wait_play_audio_num_threshold.value)
+                    config_data["idle_time_task_config"]["idle_time_reduce_to"] = int(input_idle_time_task_idle_time_reduce_to.value)
 
                     tmp_arr = []
                     for index in range(len(idle_time_task_trigger_type_var)):
                         if idle_time_task_trigger_type_var[str(index)].value:
                             tmp_arr.append(common.find_keys_by_value(idle_time_task_trigger_type_mapping, idle_time_task_trigger_type_var[str(index)].text)[0])
                     # logger.info(tmp_arr)
-                    config_data["idle_time_task"]["trigger_type"] = tmp_arr
+                    config_data["idle_time_task_config"]["trigger_type"] = tmp_arr
 
-                    config_data["idle_time_task"]["comment"]["enable"] = switch_idle_time_task_comment_enable.value
-                    config_data["idle_time_task"]["comment"]["random"] = switch_idle_time_task_comment_random.value
-                    config_data["idle_time_task"]["copywriting"]["copy"] = common_textarea_handle(textarea_idle_time_task_copywriting_copy.value)
-                    config_data["idle_time_task"]["copywriting"]["enable"] = switch_idle_time_task_copywriting_enable.value
-                    config_data["idle_time_task"]["copywriting"]["random"] = switch_idle_time_task_copywriting_random.value
-                    config_data["idle_time_task"]["comment"]["copy"] = common_textarea_handle(textarea_idle_time_task_comment_copy.value)
-                    config_data["idle_time_task"]["local_audio"]["enable"] = switch_idle_time_task_local_audio_enable.value
-                    config_data["idle_time_task"]["local_audio"]["random"] = switch_idle_time_task_local_audio_random.value
-                    config_data["idle_time_task"]["local_audio"]["path"] = common_textarea_handle(textarea_idle_time_task_local_audio_path.value)
+                    if "comment" not in config_data["idle_time_task_config"]:
+                        config_data["idle_time_task_config"]["comment"] = {}
+                    if "copywriting" not in config_data["idle_time_task_config"]:
+                        config_data["idle_time_task_config"]["copywriting"] = {}
+                    if "local_audio" not in config_data["idle_time_task_config"]:
+                        config_data["idle_time_task_config"]["local_audio"] = {}
+                    
+                    config_data["idle_time_task_config"]["comment"]["enable"] = switch_idle_time_task_comment_enable.value
+                    config_data["idle_time_task_config"]["comment"]["random"] = switch_idle_time_task_comment_random.value
+                    config_data["idle_time_task_config"]["copywriting"]["copy"] = common_textarea_handle(textarea_idle_time_task_copywriting_copy.value)
+                    config_data["idle_time_task_config"]["copywriting"]["enable"] = switch_idle_time_task_copywriting_enable.value
+                    config_data["idle_time_task_config"]["copywriting"]["random"] = switch_idle_time_task_copywriting_random.value
+                    config_data["idle_time_task_config"]["comment"]["copy"] = common_textarea_handle(textarea_idle_time_task_comment_copy.value)
+                    config_data["idle_time_task_config"]["local_audio"]["enable"] = switch_idle_time_task_local_audio_enable.value
+                    config_data["idle_time_task_config"]["local_audio"]["random"] = switch_idle_time_task_local_audio_random.value
+                    config_data["idle_time_task_config"]["local_audio"]["path"] = common_textarea_handle(textarea_idle_time_task_local_audio_path.value)
 
 
                 # 动态文案
@@ -3180,6 +3200,14 @@ def goto_func_page():
                                 "file_path": (input_assistant_anchor_local_qa_audio_file_path, 'str'),
                                 "similarity": (input_assistant_anchor_local_qa_audio_similarity, 'float')
                             }
+                        },
+                        "dh_live": {
+                            "enable": (switch_assistant_anchor_dh_live_enable, 'bool'),
+                            "api_ip_port": (input_assistant_anchor_dh_live_api_ip_port, 'str'),
+                            "timeout": (input_assistant_anchor_dh_live_timeout, 'int'),
+                            "forward_normal_audio": (switch_assistant_anchor_dh_live_forward_normal_audio, 'bool'),
+                            "forward_assistant_audio": (switch_assistant_anchor_dh_live_forward_assistant_audio, 'bool'),
+                            "play_delay": (input_assistant_anchor_dh_live_play_delay, 'float')
                         }
                     }
                 }
@@ -3370,6 +3398,12 @@ def goto_func_page():
                 # logger.info(tmp_arr)
                 config_data["webui"]["local_dir_to_endpoint"]["config"] = tmp_arr
 
+            # 自动同步 assistant_anchor_read_comment 与 read_comment 的优先级
+            if "filter" in config_data and "priority_mapping" in config_data["filter"]:
+                if "read_comment" in config_data["filter"]["priority_mapping"] and "assistant_anchor_read_comment" in config_data["filter"]["priority_mapping"]:
+                    read_comment_priority = config_data["filter"]["priority_mapping"]["read_comment"]
+                    config_data["filter"]["priority_mapping"]["assistant_anchor_read_comment"] = read_comment_priority
+                    logger.info(f"自动同步助播念弹幕优先级为: {read_comment_priority}")
                 
             return config_data
         except Exception as e:
@@ -3402,6 +3436,13 @@ def goto_func_page():
         config_data = webui_config_to_dict(config_data)
         if config_data is None:
             return False
+
+        # 额外确保 assistant_anchor_read_comment 与 read_comment 的优先级同步
+        if "filter" in config_data and "priority_mapping" in config_data["filter"]:
+            if "read_comment" in config_data["filter"]["priority_mapping"] and "assistant_anchor_read_comment" in config_data["filter"]["priority_mapping"]:
+                read_comment_priority = config_data["filter"]["priority_mapping"]["read_comment"]
+                config_data["filter"]["priority_mapping"]["assistant_anchor_read_comment"] = read_comment_priority
+                logger.info(f"保存配置时确保助播念弹幕优先级同步为: {read_comment_priority}")
 
         # 写入本地问答json数据到文件
         if config.get("webui", "show_card", "common_config", "local_qa"):
@@ -3513,21 +3554,7 @@ def goto_func_page():
 
     platform_options = {
         'talk': '聊天模式', 
-        'bilibili': '哔哩哔哩', 
-        'bilibili2': '哔哩哔哩2', 
-        'dy': '抖音', 
-        'dy2': '抖音2', 
-        'ks': '快手',
-        'ks2': '快手2',
-        'pdd': '拼多多',
-        'wxlive': '微信视频号',
-        'taobao': '淘宝',
-        '1688': '1688',
-        'douyu': '斗鱼',
-        'ordinaryroad_barrage_fly': '让弹幕飞',
-        'youtube': 'YouTube', 
-        'twitch': 'twitch', 
-        'tiktok': 'tiktok',
+        'live': '直播模式',
     }
 
     visual_body_options = {
@@ -3554,8 +3581,8 @@ def goto_func_page():
         serial_page = ui.tab('串口')
         data_analysis_page = ui.tab('数据分析')
         web_page = ui.tab('页面配置')
-        docs_page = ui.tab('文档&教程')
-        about_page = ui.tab('关于')
+        # docs_page = ui.tab('文档&教程')
+        # about_page = ui.tab('关于')
 
     with ui.tab_panels(tabs, value=common_config_page).classes('w-full'):
         with ui.tab_panel(common_config_page).style(tab_panel_css):
@@ -3720,11 +3747,11 @@ def goto_func_page():
                                 ui.label("遗忘间隔 指的是每隔这个间隔时间（秒），就会丢弃这个间隔时间中接收到的数据，但会保留最新的n个数据；保留数 指的是保留最新收到的数据的数量")
                             with ui.grid(columns=4):
                                 input_filter_comment_forget_duration = ui.input(
-                                    label='弹幕遗忘间隔', 
+                                    label='弹幕处理间隔', 
                                     placeholder='例：1', 
                                     value=config.get("filter", "comment_forget_duration")
-                                ).style("width:200px;").tooltip('指的是每隔这个间隔时间（秒），就会丢弃这个间隔时间中接收到的数据，\n保留数据在以下配置中可以自定义')
-                                input_filter_comment_forget_reserve_num = ui.input(label='弹幕保留数', placeholder='保留最新收到的数据的数量', value=config.get("filter", "comment_forget_reserve_num")).style("width:200px;").tooltip('保留最新收到的数据的数量')
+                                ).style("width:200px;").tooltip('指的是每隔这个间隔时间（秒），才会处理这个间隔时间中接收到的数据，\n处理数据可以自定义')
+                                input_filter_comment_forget_reserve_num = ui.input(label='弹幕处理数', placeholder='处理最新收到的数据的数量', value=config.get("filter", "comment_forget_reserve_num")).style("width:200px;").tooltip('保留最新收到的数据的数量')
                                 input_filter_gift_forget_duration = ui.input(label='礼物遗忘间隔', placeholder='指的是每隔这个间隔时间（秒），就会丢弃这个间隔时间中接收到的数据，\n保留数据在以下配置中可以自定义', value=config.get("filter", "gift_forget_duration")).style("width:200px;").tooltip('指的是每隔这个间隔时间（秒），就会丢弃这个间隔时间中接收到的数据，\n保留数据在以下配置中可以自定义')
                                 input_filter_gift_forget_reserve_num = ui.input(label='礼物保留数', placeholder='保留最新收到的数据的数量', value=config.get("filter", "gift_forget_reserve_num")).style("width:200px;").tooltip('保留最新收到的数据的数量')
                             with ui.grid(columns=4):
@@ -3773,6 +3800,20 @@ def goto_func_page():
                             with ui.grid(columns=5):
                                 input_filter_priority_mapping_song = ui.input(label='点歌 优先级', value=config.get("filter", "priority_mapping", "song"), placeholder='数字越大，优先级越高，但这个并非文本，所以暂时没啥用，预留').style("width:200px;").tooltip('数字越大，优先级越高')
                                 input_filter_priority_mapping_read_comment = ui.input(label='念弹幕 优先级', value=config.get("filter", "priority_mapping", "read_comment"), placeholder='数字越大，优先级越高').style("width:200px;").tooltip('数字越大，优先级越高')
+                                input_filter_priority_mapping_assistant_anchor_read_comment = ui.input(label='助播念弹幕 优先级', value=config.get("filter", "priority_mapping", "assistant_anchor_read_comment"), placeholder='数字越大，优先级越高').style("width:200px;").tooltip('数字越大，优先级越高，此值会自动与念弹幕优先级同步')
+                                
+                                # 添加事件监听器，当念弹幕优先级改变时，自动同步助播念弹幕优先级
+                                def sync_assistant_priority():
+                                    try:
+                                        read_comment_value = input_filter_priority_mapping_read_comment.value
+                                        if read_comment_value and read_comment_value != '':
+                                            input_filter_priority_mapping_assistant_anchor_read_comment.value = read_comment_value
+                                            logger.info(f"实时同步助播念弹幕优先级为: {read_comment_value}")
+                                    except Exception as e:
+                                        logger.error(f"同步助播念弹幕优先级失败: {e}")
+                                
+                                # 为念弹幕优先级输入框添加事件监听器
+                                input_filter_priority_mapping_read_comment.on('change', sync_assistant_priority)
                                 input_filter_priority_mapping_entrance = ui.input(label='入场欢迎 优先级', value=config.get("filter", "priority_mapping", "entrance"), placeholder='数字越大，优先级越高').style("width:200px;").tooltip('数字越大，优先级越高')
                                 input_filter_priority_mapping_gift = ui.input(label='礼物答谢 优先级', value=config.get("filter", "priority_mapping", "gift"), placeholder='数字越大，优先级越高').style("width:200px;").tooltip('数字越大，优先级越高')
                                 input_filter_priority_mapping_follow = ui.input(label='关注答谢 优先级', value=config.get("filter", "priority_mapping", "follow"), placeholder='数字越大，优先级越高').style("width:200px;").tooltip('数字越大，优先级越高')
@@ -3998,7 +4039,7 @@ def goto_func_page():
                     with ui.card().style(card_css):
                         ui.label('闲时任务')
                         with ui.row():
-                            switch_idle_time_task_enable = ui.switch('启用', value=config.get("idle_time_task", "enable")).style(switch_internal_css)
+                            switch_idle_time_task_enable = ui.switch('启用', value=config.get("idle_time_task_config", "enable")).style(switch_internal_css)
                             select_idle_time_task_type = ui.select(
                                 label='机制类型',
                                 options={
@@ -4006,37 +4047,37 @@ def goto_func_page():
                                     '待播放音频队列更新闲时': '待播放音频队列更新闲时', 
                                     '直播间无消息更新闲时': '直播间无消息更新闲时',
                                 },
-                                value=config.get("idle_time_task", "type")
+                                value=config.get("idle_time_task_config", "type")
                             ).tooltip('闲时任务执行的逻辑，在不同逻辑下可以实现不同的触发效果。\n如果是用于带货，可以选用 待播放音频队列更新闲时，然后把触发值设为1，从而在音频数少于1的情况下才会触发闲时任务，有效抑制大量任务产生。\n如果用于不需要一直说话的场景，推荐使用：直播间无消息更新闲时，然后把间隔设大点，隔一段时间触发一次。')
                         with ui.row():
                             input_idle_time_task_idle_min_msg_queue_len_to_trigger = ui.input(
                                 label='待合成消息队列个数小于此值时触发', 
-                                value=config.get("idle_time_task", "min_msg_queue_len_to_trigger"), 
+                                value=config.get("idle_time_task_config", "min_msg_queue_len_to_trigger"), 
                                 placeholder='待合成消息队列个数小于此值时，才会触发闲时任务'
                             ).style("width:250px;").tooltip('待合成消息队列个数小于此值时，才会触发闲时任务')
                             input_idle_time_task_idle_min_audio_queue_len_to_trigger = ui.input(
                                 label='待播放音频队列个数小于此值时触发', 
-                                value=config.get("idle_time_task", "min_audio_queue_len_to_trigger"), 
+                                value=config.get("idle_time_task_config", "min_audio_queue_len_to_trigger"), 
                                 placeholder='待播放音频队列个数小于此值时，才会触发闲时任务'
                             ).style("width:250px;").tooltip('待播放音频队列个数小于此值时，才会触发闲时任务')
                             
                         with ui.row():
                             input_idle_time_task_idle_time_min = ui.input(
                                 label='最小闲时时间', 
-                                value=config.get("idle_time_task", "idle_time_min"), 
+                                value=config.get("idle_time_task_config", "idle_time_min"), 
                                 placeholder='最小闲时间隔时间（正整数，单位：秒），就是在没有弹幕情况下经过的时间'
                             ).style("width:150px;").tooltip('最小闲时间隔时间（正整数，单位：秒），就是在没有弹幕情况下经过的时间')
                             input_idle_time_task_idle_time_max = ui.input(
                                 label='最大闲时时间', 
-                                value=config.get("idle_time_task", "idle_time_max"), 
+                                value=config.get("idle_time_task_config", "idle_time_max"), 
                                 placeholder='最大闲时间隔时间（正整数，单位：秒），就是在没有弹幕情况下经过的时间'
                             ).style("width:150px;").tooltip('最大闲时间隔时间（正整数，单位：秒），就是在没有弹幕情况下经过的时间')
                             input_idle_time_task_wait_play_audio_num_threshold = ui.input(
                                 label='等待播放音频数量阈值', 
-                                value=config.get("idle_time_task", "wait_play_audio_num_threshold"), 
+                                value=config.get("idle_time_task_config", "wait_play_audio_num_threshold"), 
                                 placeholder='当等待播放音频数量超过这个阈值，将会在音频播放完毕后触发闲时时间减少到设定的缩减值，旨在控制闲时任务触发总量'
                             ).style("width:150px;").tooltip('当等待播放音频数量超过这个阈值，将会在音频播放完毕后触发闲时时间减少到设定的缩减值，旨在控制闲时任务触发总量')
-                            input_idle_time_task_idle_time_reduce_to = ui.input(label='闲时计时减小到', value=config.get("idle_time_task", "idle_time_reduce_to"), placeholder='达到阈值情况下，闲时计时缩减到的数值').style("width:150px;").tooltip('达到阈值情况下，闲时计时缩减到的数值')
+                            input_idle_time_task_idle_time_reduce_to = ui.input(label='闲时计时减小到', value=config.get("idle_time_task_config", "idle_time_reduce_to"), placeholder='达到阈值情况下，闲时计时缩减到的数值').style("width:150px;").tooltip('达到阈值情况下，闲时计时缩减到的数值')
                             
                         with ui.row():
                             ui.label('刷新闲时计时的消息类型')
@@ -4051,35 +4092,35 @@ def goto_func_page():
                             idle_time_task_trigger_type_var = {}
                             
                             for index, idle_time_task_trigger_type in enumerate(idle_time_task_trigger_type_list):
-                                if idle_time_task_trigger_type in config.get("idle_time_task", "trigger_type"):
+                                if idle_time_task_trigger_type in config.get("idle_time_task_config", "trigger_type"):
                                     idle_time_task_trigger_type_var[str(index)] = ui.checkbox(text=idle_time_task_trigger_type_mapping[idle_time_task_trigger_type], value=True)
                                 else:
                                     idle_time_task_trigger_type_var[str(index)] = ui.checkbox(text=idle_time_task_trigger_type_mapping[idle_time_task_trigger_type], value=False)
                     
 
                         with ui.row():
-                            switch_idle_time_task_copywriting_enable = ui.switch('文案模式', value=config.get("idle_time_task", "copywriting", "enable")).style(switch_internal_css)
-                            switch_idle_time_task_copywriting_random = ui.switch('随机文案', value=config.get("idle_time_task", "copywriting", "random")).style(switch_internal_css)
+                            switch_idle_time_task_copywriting_enable = ui.switch('文案模式', value=config.get("idle_time_task_config", "copywriting", "enable")).style(switch_internal_css)
+                            switch_idle_time_task_copywriting_random = ui.switch('随机文案', value=config.get("idle_time_task_config", "copywriting", "random")).style(switch_internal_css)
                             textarea_idle_time_task_copywriting_copy = ui.textarea(
                                 label='文案列表', 
-                                value=textarea_data_change(config.get("idle_time_task", "copywriting", "copy")), 
+                                value=textarea_data_change(config.get("idle_time_task_config", "copywriting", "copy")), 
                                 placeholder='文案列表，文案之间用换行分隔，文案会丢LLM进行处理后直接合成返回的结果'
                             ).style("width:800px;").tooltip('文案列表，文案之间用换行分隔，文案会丢LLM进行处理后直接合成返回的结果')
                         
                         with ui.row():
-                            switch_idle_time_task_comment_enable = ui.switch('弹幕触发LLM模式', value=config.get("idle_time_task", "comment", "enable")).style(switch_internal_css)
-                            switch_idle_time_task_comment_random = ui.switch('随机弹幕', value=config.get("idle_time_task", "comment", "random")).style(switch_internal_css)
+                            switch_idle_time_task_comment_enable = ui.switch('弹幕触发LLM模式', value=config.get("idle_time_task_config", "comment", "enable")).style(switch_internal_css)
+                            switch_idle_time_task_comment_random = ui.switch('随机弹幕', value=config.get("idle_time_task_config", "comment", "random")).style(switch_internal_css)
                             textarea_idle_time_task_comment_copy = ui.textarea(
                                 label='弹幕列表', 
-                                value=textarea_data_change(config.get("idle_time_task", "comment", "copy")), 
+                                value=textarea_data_change(config.get("idle_time_task_config", "comment", "copy")), 
                                 placeholder='弹幕列表，弹幕之间用换行分隔，文案会丢LLM进行处理后直接合成返回的结果'
                             ).style("width:800px;").tooltip('弹幕列表，弹幕之间用换行分隔，文案会丢LLM进行处理后直接合成返回的结果')
                         with ui.row():
-                            switch_idle_time_task_local_audio_enable = ui.switch('本地音频模式', value=config.get("idle_time_task", "local_audio", "enable")).style(switch_internal_css)
-                            switch_idle_time_task_local_audio_random = ui.switch('随机本地音频', value=config.get("idle_time_task", "local_audio", "random")).style(switch_internal_css)
+                            switch_idle_time_task_local_audio_enable = ui.switch('本地音频模式', value=config.get("idle_time_task_config", "local_audio", "enable")).style(switch_internal_css)
+                            switch_idle_time_task_local_audio_random = ui.switch('随机本地音频', value=config.get("idle_time_task_config", "local_audio", "random")).style(switch_internal_css)
                             textarea_idle_time_task_local_audio_path = ui.textarea(
                                 label='本地音频路径列表', 
-                                value=textarea_data_change(config.get("idle_time_task", "local_audio", "path")), 
+                                value=textarea_data_change(config.get("idle_time_task_config", "local_audio", "path")), 
                                 placeholder='本地音频路径列表，相对/绝对路径之间用换行分隔，音频文件会直接丢进音频播放队列'
                             ).style("width:800px;").tooltip('本地音频路径列表，相对/绝对路径之间用换行分隔，音频文件会直接丢进音频播放队列')
 
@@ -7149,7 +7190,7 @@ def goto_func_page():
                     # 类型列表源自audio_synthesis_handle 音频合成的所支持的type值
                     assistant_anchor_type_list = ["comment", "local_qa_audio", "song", "reread", "read_comment", "gift", 
                                                   "entrance", "follow", "idle_time_task", "reread_top_priority", "schedule", 
-                                                  "image_recognition_schedule", "key_mapping", "integral"]
+                                                  "image_recognition_schedule", "key_mapping", "integral", "copywriting"]
                     assistant_anchor_type_mapping = {
                         "comment": "弹幕",
                         "local_qa_audio": "本地问答-音频",
@@ -7165,6 +7206,7 @@ def goto_func_page():
                         "image_recognition_schedule": "图像识别定时任务",
                         "key_mapping": "按键映射",
                         "integral": "积分",
+                        "copywriting": "文案",
                     }
                     assistant_anchor_type_var = {}
                     
@@ -7191,6 +7233,15 @@ def goto_func_page():
                 )
                 input_assistant_anchor_local_qa_audio_file_path = ui.input(label='音频存储路径', value=config.get("assistant_anchor", "local_qa", "audio", "file_path"), placeholder='本地问答音频文件存储路径').style("width:200px;")
                 input_assistant_anchor_local_qa_audio_similarity = ui.input(label='音频最低相似度', value=config.get("assistant_anchor", "local_qa", "audio", "similarity"), placeholder='最低音频匹配相似度，就是说用户发送的内容和本地音频库中音频文件名的最低相似度。\n低了就会被当做一般弹幕处理').style("width:200px;")
+            with ui.card().style(card_css):
+                ui.label("DH-LIVE转发配置")
+                with ui.grid(columns=3):
+                    switch_assistant_anchor_dh_live_enable = ui.switch('启用DH-LIVE转发', value=config.get("assistant_anchor", "dh_live", "enable")).style(switch_internal_css)
+                    input_assistant_anchor_dh_live_api_ip_port = ui.input(label='DH-LIVE API地址', value=config.get("assistant_anchor", "dh_live", "api_ip_port"), placeholder='DH-LIVE API接口地址，如: http://127.0.0.1:8080').style("width:250px;")
+                    input_assistant_anchor_dh_live_timeout = ui.input(label='超时时间(秒)', value=config.get("assistant_anchor", "dh_live", "timeout"), placeholder='请求超时时间，默认30秒').style("width:150px;")         
+                    input_assistant_anchor_dh_live_play_delay = ui.input(label='播放延迟(秒)', value=config.get("assistant_anchor", "dh_live", "play_delay"), placeholder='音频播放延迟时间，用于同步DH-LIVE口型，支持小数').style("width:200px;")
+                    switch_assistant_anchor_dh_live_forward_normal_audio = ui.switch('转发普通音频', value=config.get("assistant_anchor", "dh_live", "forward_normal_audio")).style(switch_internal_css)
+                    switch_assistant_anchor_dh_live_forward_assistant_audio = ui.switch('转发助播音频', value=config.get("assistant_anchor", "dh_live", "forward_assistant_audio")).style(switch_internal_css)
         
         with ui.tab_panel(translate_page).style(tab_panel_css):
             with ui.row():
@@ -7390,6 +7441,8 @@ def goto_func_page():
                         ).style(echart_css)
                         echart_gift.move(data_analysis_gift_card, 0)
                     ui.button('更新数据', on_click=lambda: update_echart_gift())
+        
+        # WebUI配置页面
         with ui.tab_panel(web_page).style(tab_panel_css):
             with ui.card().style(card_css):
                 ui.label("webui配置")
@@ -7558,41 +7611,41 @@ def goto_func_page():
                     switch_login_enable = ui.switch('登录功能', value=config.get("login", "enable")).style(switch_internal_css)
                     input_login_username = ui.input(label='用户名', placeholder='您的账号喵，配置在config.json中', value=config.get("login", "username")).style("width:250px;")
                     input_login_password = ui.input(label='密码', password=True, placeholder='您的密码喵，配置在config.json中', value=config.get("login", "password")).style("width:250px;")
-        with ui.tab_panel(docs_page).style(tab_panel_css):
-            with ui.row():
-                ui.label('在线文档：')
-                ui.link('https://ikaros521.eu.org/site/', 'https://ikaros521.eu.org/site/', new_tab=True)
-                ui.link('gitee备份文档', 'https://ikaros-521.gitee.io/luna-docs/site/index.html', new_tab=True)
+        # with ui.tab_panel(docs_page).style(tab_panel_css):
+        #     with ui.row():
+        #         ui.label('在线文档：')
+        #         ui.link('https://ikaros521.eu.org/site/', 'https://ikaros521.eu.org/site/', new_tab=True)
+        #         ui.link('gitee备份文档', 'https://ikaros-521.gitee.io/luna-docs/site/index.html', new_tab=True)
 
-                ui.label('NiceGUI官方文档：')
-                ui.link('nicegui.io/documentation', 'https://nicegui.io/documentation', new_tab=True)
+        #         ui.label('NiceGUI官方文档：')
+        #         ui.link('nicegui.io/documentation', 'https://nicegui.io/documentation', new_tab=True)
 
-                ui.label('视频教程合集：')
-                ui.link('点我跳转', 'https://space.bilibili.com/3709626/channel/collectiondetail?sid=1422512', new_tab=True)
+        #         ui.label('视频教程合集：')
+        #         ui.link('点我跳转', 'https://space.bilibili.com/3709626/channel/collectiondetail?sid=1422512', new_tab=True)
 
-                ui.label('GitHub仓库：')
-                ui.link('Ikaros-521/AI-Vtuber', 'https://github.com/Ikaros-521/AI-Vtuber', new_tab=True)
+        #         ui.label('GitHub仓库：')
+        #         ui.link('Ikaros-521/AI-Vtuber', 'https://github.com/Ikaros-521/AI-Vtuber', new_tab=True)
             
-            with ui.expansion('视频教程', icon='movie_filter', value=True).classes('w-full'):
-                ui.html('<iframe src="https://space.bilibili.com/3709626/channel/collectiondetail?sid=1422512" allowfullscreen="true" width="1800" height="800"> </iframe>').style("width:100%")
+        #     with ui.expansion('视频教程', icon='movie_filter', value=True).classes('w-full'):
+        #         ui.html('<iframe src="https://space.bilibili.com/3709626/channel/collectiondetail?sid=1422512" allowfullscreen="true" width="1800" height="800"> </iframe>').style("width:100%")
 
-            with ui.expansion('文档', icon='article', value=True).classes('w-full'):
-                ui.html('<iframe src="https://ikaros521.eu.org/site/" width="1800" height="800"></iframe>').style("width:100%")
-        with ui.tab_panel(about_page).style(tab_panel_css):
-            with ui.card().style(card_css):
-                ui.label('介绍').style("font-size:24px;")
-                ui.label('AI Vtuber 是一款结合了最先进技术的虚拟AI主播。它的核心是一系列高效的人工智能模型，包括 ChatterBot、GPT、Claude、langchain、chatglm、text-generation-webui、讯飞星火、智谱AI、谷歌Bard、文心一言 和 通义星尘。这些模型既可以在本地运行，也可以通过云端服务提供支持。')
-                ui.label('AI Vtuber 的外观由 Live2D、Vtube Studio、xuniren 和 UE5 结合 Audio2Face 技术打造，为用户提供了一个生动、互动的虚拟形象。这使得 AI Vtuber 能够在各大直播平台，如 Bilibili、抖音、快手、斗鱼、YouTube 和 Twitch，进行实时互动直播。当然，它也可以在本地环境中与您进行个性化对话。')
-                ui.label('为了使交流更加自然，AI Vtuber 使用了先进的自然语言处理技术，结合文本转语音系统，如 Edge-TTS、VITS-Fast、elevenlabs、bark-gui、VALL-E-X、睿声AI、genshinvoice.top、 tts.ai-lab.top和GPT-SoVITS。这不仅让它能够生成流畅的回答，还可以通过 so-vits-svc 和 DDSP-SVC 实现声音的变化，以适应不同的场景和角色。')
-                ui.label('此外，AI Vtuber 还能够通过特定指令与 Stable Diffusion 协作，展示画作。用户还可以自定义文案，让 AI Vtuber 循环播放，以满足不同场合的需求。')
-            with ui.card().style(card_css):
-                ui.label('许可证').style("font-size:24px;")
-                ui.label('这个项目采用 GNU通用公共许可证（GPL） 进行许可。有关详细信息，请参阅 LICENSE 文件。')
-            with ui.card().style(card_css):
-                ui.label('注意').style("font-size:24px;")
-                ui.label('严禁将此项目用于一切违反《中华人民共和国宪法》，《中华人民共和国刑法》，《中华人民共和国治安管理处罚法》和《中华人民共和国民法典》之用途。')
-                ui.label('严禁用于任何政治相关用途。')
-            ui.image('./docs/xmind.png').style("width:1000px;")
+        #     with ui.expansion('文档', icon='article', value=True).classes('w-full'):
+        #         ui.html('<iframe src="https://ikaros521.eu.org/site/" width="1800" height="800"></iframe>').style("width:100%")
+        # with ui.tab_panel(about_page).style(tab_panel_css):
+        #     with ui.card().style(card_css):
+        #         ui.label('介绍').style("font-size:24px;")
+        #         ui.label('AI Vtuber 是一款结合了最先进技术的虚拟AI主播。它的核心是一系列高效的人工智能模型，包括 ChatterBot、GPT、Claude、langchain、chatglm、text-generation-webui、讯飞星火、智谱AI、谷歌Bard、文心一言 和 通义星尘。这些模型既可以在本地运行，也可以通过云端服务提供支持。')
+        #         ui.label('AI Vtuber 的外观由 Live2D、Vtube Studio、xuniren 和 UE5 结合 Audio2Face 技术打造，为用户提供了一个生动、互动的虚拟形象。这使得 AI Vtuber 能够在各大直播平台，如 Bilibili、抖音、快手、斗鱼、YouTube 和 Twitch，进行实时互动直播。当然，它也可以在本地环境中与您进行个性化对话。')
+        #         ui.label('为了使交流更加自然，AI Vtuber 使用了先进的自然语言处理技术，结合文本转语音系统，如 Edge-TTS、VITS-Fast、elevenlabs、bark-gui、VALL-E-X、睿声AI、genshinvoice.top、 tts.ai-lab.top和GPT-SoVITS。这不仅让它能够生成流畅的回答，还可以通过 so-vits-svc 和 DDSP-SVC 实现声音的变化，以适应不同的场景和角色。')
+        #         ui.label('此外，AI Vtuber 还能够通过特定指令与 Stable Diffusion 协作，展示画作。用户还可以自定义文案，让 AI Vtuber 循环播放，以满足不同场合的需求。')
+        #     with ui.card().style(card_css):
+        #         ui.label('许可证').style("font-size:24px;")
+        #         ui.label('这个项目采用 GNU通用公共许可证（GPL） 进行许可。有关详细信息，请参阅 LICENSE 文件。')
+        #     with ui.card().style(card_css):
+        #         ui.label('注意').style("font-size:24px;")
+        #         ui.label('严禁将此项目用于一切违反《中华人民共和国宪法》，《中华人民共和国刑法》，《中华人民共和国治安管理处罚法》和《中华人民共和国民法典》之用途。')
+        #         ui.label('严禁用于任何政治相关用途。')
+        #     ui.image('./docs/xmind.png').style("width:1000px;")
     with ui.grid(columns=6).style("position: fixed; bottom: 10px; text-align: center;"):
         button_save = ui.button('保存配置', on_click=lambda: save_config(), color=button_bottom_color).style(button_bottom_css).tooltip("保存webui的配置到本地文件，有些配置保存后需要重启生效")
         button_run = ui.button('一键运行', on_click=lambda: run_external_program(), color=button_bottom_color).style(button_bottom_css).tooltip("运行main.py")
@@ -7612,7 +7665,7 @@ def goto_func_page():
         run_external_program(type="api")
 
 # 发送心跳包
-ui.timer(9 * 60, lambda: common.send_heartbeat())
+# ui.timer(9 * 60, lambda: common.send_heartbeat())
 
 # 是否启用登录功能（暂不合理）
 if config.get("login", "enable"):
@@ -7696,4 +7749,4 @@ else:
         goto_func_page()
 
 
-ui.run(host=webui_ip, port=webui_port, title=webui_title, favicon="./ui/favicon-64.ico", language="zh-CN", dark=False, reload=False)
+ui.run(host=webui_ip, port=webui_port, title=webui_title, favicon="./ui/favicon.ico", language="zh-CN", dark=False, reload=False, show=True)

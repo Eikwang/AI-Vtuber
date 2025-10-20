@@ -111,17 +111,17 @@ def start_server(config_path, sub_thread_exit_events):
 
         if 0 <= hour and hour < 6:
             time = f"凌晨{hour}点{min}分"
-        elif 6 <= hour and hour < 9:
+        elif 6 <= hour and hour < 8:
             time = f"早晨{hour}点{min}分"
-        elif 9 <= hour and hour < 12:
+        elif 8 <= hour and hour < 11:
             time = f"上午{hour}点{min}分"
-        elif hour == 12:
+        elif 11 <= hour and hour < 14:
             time = f"中午{hour}点{min}分"
-        elif 13 <= hour and hour < 18:
+        elif 14 <= hour and hour < 17:
             time = f"下午{hour - 12}点{min}分"
-        elif 18 <= hour and hour < 20:
+        elif 17 <= hour and hour < 19:
             time = f"傍晚{hour - 12}点{min}分"
-        elif 20 <= hour and hour < 24:
+        elif 19 <= hour and hour < 24:
             time = f"晚上{hour - 12}点{min}分"
 
 
@@ -250,7 +250,7 @@ def start_server(config_path, sub_thread_exit_events):
         global config, global_idle_time
 
         try:
-            if False == config.get("idle_time_task", "enable"):
+            if False == config.get("idle_time_task_config", "enable"):
                 return
             
             logging.info(f"闲时任务线程运行中...")
@@ -260,18 +260,18 @@ def start_server(config_path, sub_thread_exit_events):
             comment_copy_list = None
             local_audio_path_list = None
 
-            overflow_time = int(config.get("idle_time_task", "idle_time"))
+            overflow_time = int(config.get("idle_time_task_config", "idle_time"))
             # 是否开启了随机闲时时间
-            if config.get("idle_time_task", "random_time"):
+            if config.get("idle_time_task_config", "random_time"):
                 overflow_time = random.randint(0, overflow_time)
             
             logging.info(f"闲时时间={overflow_time}秒")
 
             def load_data_list(type):
                 if type == "comment":
-                    tmp = config.get("idle_time_task", "comment", "copy")
+                    tmp = config.get("idle_time_task_config", "comment", "copy")
                 elif type == "local_audio":
-                    tmp = config.get("idle_time_task", "local_audio", "path")
+                    tmp = config.get("idle_time_task_config", "local_audio", "path")
                 tmp2 = copy.copy(tmp)
                 return tmp2
 
@@ -292,10 +292,10 @@ def start_server(config_path, sub_thread_exit_events):
                     global_idle_time = 0
 
                     # 闲时任务处理
-                    if config.get("idle_time_task", "comment", "enable"):
-                        if last_mode == 0 or not config.get("idle_time_task", "local_audio", "enable"):
+                    if config.get("idle_time_task_config", "comment", "enable"):
+                        if last_mode == 0 or not config.get("idle_time_task_config", "local_audio", "enable"):
                             # 是否开启了随机触发
-                            if config.get("idle_time_task", "comment", "random"):
+                            if config.get("idle_time_task_config", "comment", "random"):
                                 logging.debug("切换到文案触发模式")
                                 if comment_copy_list != []:
                                     # 随机打乱列表中的元素
@@ -328,20 +328,20 @@ def start_server(config_path, sub_thread_exit_events):
                             # 模式切换
                             last_mode = 1
 
-                            overflow_time = int(config.get("idle_time_task", "idle_time"))
+                            overflow_time = int(config.get("idle_time_task_config", "idle_time"))
                             # 是否开启了随机闲时时间
-                            if config.get("idle_time_task", "random_time"):
+                            if config.get("idle_time_task_config", "random_time"):
                                 overflow_time = random.randint(0, overflow_time)
                             logging.info(f"闲时时间={overflow_time}秒")
 
                             continue
                     
-                    if config.get("idle_time_task", "local_audio", "enable"):
-                        if last_mode == 1 or (not config.get("idle_time_task", "comment", "enable")):
+                    if config.get("idle_time_task_config", "local_audio", "enable"):
+                        if last_mode == 1 or (not config.get("idle_time_task_config", "comment", "enable")):
                             logging.debug("切换到本地音频模式")
 
                             # 是否开启了随机触发
-                            if config.get("idle_time_task", "local_audio", "random"):
+                            if config.get("idle_time_task_config", "local_audio", "random"):
                                 if local_audio_path_list != []:
                                     # 随机打乱列表中的元素
                                     random.shuffle(local_audio_path_list)
@@ -376,9 +376,9 @@ def start_server(config_path, sub_thread_exit_events):
                             # 模式切换
                             last_mode = 0
 
-                            overflow_time = int(config.get("idle_time_task", "idle_time"))
+                            overflow_time = int(config.get("idle_time_task_config", "idle_time"))
                             # 是否开启了随机闲时时间
-                            if config.get("idle_time_task", "random_time"):
+                            if config.get("idle_time_task_config", "random_time"):
                                 overflow_time = random.randint(0, overflow_time)
                             logging.info(f"闲时时间={overflow_time}秒")
 
@@ -390,11 +390,11 @@ def start_server(config_path, sub_thread_exit_events):
         except Exception as e:
             logging.error(traceback.format_exc())
 
-    if config.get("idle_time_task", "enable"):
-        # 创建闲时任务子线程并启动
-        idle_time_task_thread = threading.Thread(target=lambda: asyncio.run(idle_time_task()), args=(sub_thread_exit_events[3],))
-        idle_time_task_thread.start()
-        sub_threads.append(idle_time_task_thread)
+            if config.get("idle_time_task_config", "enable"):
+                # 创建闲时任务子线程并启动
+                idle_time_task_thread = threading.Thread(target=lambda: asyncio.run(idle_time_task()), args=(sub_thread_exit_events[3],))
+                idle_time_task_thread.start()
+                sub_threads.append(idle_time_task_thread)
 
     if config.get("platform") == "bilibili":
         try:
@@ -598,8 +598,8 @@ def start_server(config_path, sub_thread_exit_events):
 
             logging.info(f"用户：{username} 进入直播间")
 
-            # 添加用户名到最新的用户名列表
-            add_username_to_last_username_list(username)
+            # 添加用户名到最新的用户名列表（移至entrance_handle中统一处理）
+            # add_username_to_last_username_list(username)
 
             data = {
                 "platform": "哔哩哔哩",
@@ -769,8 +769,8 @@ def start_server(config_path, sub_thread_exit_events):
 
                 logging.info(f"用户：{username} 进入直播间")
 
-                # 添加用户名到最新的用户名列表
-                add_username_to_last_username_list(username)
+                # 添加用户名到最新的用户名列表（移至entrance_handle中统一处理）
+                # add_username_to_last_username_list(username)
 
                 data = {
                     "platform": "哔哩哔哩2",
@@ -970,8 +970,8 @@ def start_server(config_path, sub_thread_exit_events):
                         
                         my_handle.process_data(data, "comment")
 
-                        # 添加用户名到最新的用户名列表
-                        add_username_to_last_username_list(username)
+                        # 添加用户名到最新的用户名列表（移至comment_handle中统一处理）
+                        # add_username_to_last_username_list(username)
 
                 except Exception as e:
                     logging.error(e)
@@ -1037,8 +1037,8 @@ def start_server(config_path, sub_thread_exit_events):
                         "content": "进入直播间"
                     }
 
-                    # 添加用户名到最新的用户名列表
-                    add_username_to_last_username_list(username)
+                    # 添加用户名到最新的用户名列表（移至entrance_handle中统一处理）
+                    # add_username_to_last_username_list(username)
 
                     my_handle.process_data(data, "entrance")
 
@@ -1236,7 +1236,7 @@ def start_server(config_path, sub_thread_exit_events):
                 with semaphore:
                     thread_name = threading.current_thread().name.split("-")[0]
                     with sync_playwright() as p:
-                        self.browser = p.firefox.launch(headless=False)
+                        self.browser = p.firefox.launch(headless=True)
                         # executable_path=self.path + self.chrome_path
                         cookie_list = self.find_file("cookie", "json")
                     
@@ -2135,7 +2135,9 @@ if __name__ == '__main__':
                         }
                     }
                     """
-                    my_handle.process_data(data_json['data'], "comment")
+                    # 弹幕处理已迁移到WebSocket，禁用API弹幕处理避免重复
+                    logging.warning(f"API弹幕处理已禁用，请使用WebSocket接口")
+                    return jsonify({"code": -1, "msg": "弹幕处理已迁移到WebSocket，API已禁用"})
                 elif data_json["type"] == "gift":
                     """
                     {

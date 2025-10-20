@@ -7,7 +7,15 @@
 @Date    : 2023/06/23 下午 7:47 
 @Description :  统一模型层抽象
 """
+
 from utils.my_log import logger
+# Chatterbot集成
+try:
+    from chatterbot import ChatBot
+    from chatterbot.trainers import ChatterBotCorpusTrainer
+except ImportError:
+    ChatBot = None
+    ChatterBotCorpusTrainer = None
 
 from utils.gpt_model.chatglm import Chatglm
 from utils.gpt_model.qwen import Qwen
@@ -37,7 +45,11 @@ from utils.gpt_model.volcengine import VolcEngine
 # 视觉模型
 from utils.gpt_model.blip import Blip
 
+# 导入新的ChatterBot类
+from utils.gpt_model.chatterbot import ChatterBot
+
 class GPT_Model:
+    chatterbot_instance = None
     openai = None
     
     def set_model_config(self, model_name, config):
@@ -66,6 +78,7 @@ class GPT_Model:
             "dify": Dify,
             "volcengine": VolcEngine,
             "blip": Blip,
+            "chatterbot": ChatterBot, # 使用新的ChatterBot类
         }
 
         if model_name == "openai":
@@ -75,6 +88,9 @@ class GPT_Model:
                 logger.error("openai key 为空，无法配置chatgpt模型")
                 exit(-1)
             self.chatgpt = Chatgpt(self.openai, config)
+        elif model_name == "chatterbot":
+            # 使用新的ChatterBot类进行配置
+            self.chatterbot_instance = ChatterBot(config)
         elif model_name in model_classes:
             setattr(self, model_name, model_classes[model_name](config))
 
@@ -90,11 +106,28 @@ class GPT_Model:
     def get(self, name):
         logger.info("GPT_MODEL: 进入get方法")
         try:
+            if name == "chatterbot":
+                return self.chatterbot_instance
             if name != "reread":
                 return getattr(self, name)
         except AttributeError:
             logger.warning(f"{name} 该模型不支持，如果不是LLM的类型，那就只是个警告，可以正常使用，请放心")
             return None
+
+    def chat(self, name, text):
+        """
+        通用聊天接口
+        """
+        if name == "chatterbot" and self.chatterbot_instance is not None:
+            try:
+                # 使用新的ChatterBot类的get_resp方法
+                response = self.chatterbot_instance.get_resp(text)
+                return response
+            except Exception as e:
+                logger.error(f"Chatterbot推理失败: {e}")
+                return "[Chatterbot推理失败]"
+        # 其他模型可在此补充
+        return "[模型未集成]"
 
     def get_openai_key(self):
         if self.openai is None:

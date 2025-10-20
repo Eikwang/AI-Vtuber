@@ -1,0 +1,146 @@
+{
+  "message_format_mapping": {
+    "description": "DanmakuListener到AI-VTUBER的消息格式映射配置",
+    "version": "1.0.0",
+    "mappings": {
+      "danmaku": {
+        "ai_vtuber_type": "comment",
+        "field_mapping": {
+          "platform": "platform",
+          "username": "username",
+          "content": "content",
+          "timestamp": "timestamp",
+          "user_id": "user_id",
+          "avatar": "avatar",
+          "medal_name": "medal_name",
+          "medal_level": "medal_level",
+          "user_level": "user_level",
+          "is_vip": "is_vip",
+          "is_admin": "is_admin"
+        }
+      },
+      "gift": {
+        "ai_vtuber_type": "gift",
+        "field_mapping": {
+          "platform": "platform",
+          "username": "username",
+          "content": "content",
+          "gift_name": "gift_name",
+          "gift_count": "gift_count",
+          "gift_price": "gift_price",
+          "timestamp": "timestamp",
+          "user_id": "user_id",
+          "avatar": "avatar"
+        }
+      },
+      "entrance": {
+        "ai_vtuber_type": "entrance",
+        "field_mapping": {
+          "platform": "platform",
+          "username": "username",
+          "content": "content",
+          "timestamp": "timestamp",
+          "user_id": "user_id",
+          "avatar": "avatar",
+          "entrance_effect": "entrance_effect"
+        }
+      },
+      "follow": {
+        "ai_vtuber_type": "follow",
+        "field_mapping": {
+          "platform": "platform",
+          "username": "username",
+          "content": "content",
+          "timestamp": "timestamp",
+          "user_id": "user_id",
+          "avatar": "avatar"
+        }
+      },
+      "like": {
+        "ai_vtuber_type": "like",
+        "field_mapping": {
+          "platform": "platform",
+          "username": "username",
+          "content": "content",
+          "timestamp": "timestamp",
+          "user_id": "user_id",
+          "like_count": "like_count"
+        }
+      },
+      "super_chat": {
+        "ai_vtuber_type": "super_chat",
+        "field_mapping": {
+          "platform": "platform",
+          "username": "username",
+          "content": "content",
+          "price": "price",
+          "currency": "currency",
+          "timestamp": "timestamp",
+          "user_id": "user_id",
+          "avatar": "avatar",
+          "duration": "duration"
+        }
+      },
+      "stats": {
+        "ai_vtuber_type": "stats",
+        "field_mapping": {
+          "platform": "platform",
+          "content": "content",
+          "timestamp": "timestamp",
+          "online_user_count": "online_user_count",
+          "total_user_count": "total_user_count",
+          "room_id": "room_id",
+          "room_title": "room_title"
+        }
+      },
+      "fan_club": {
+        "ai_vtuber_type": "fan_club",
+        "field_mapping": {
+          "platform": "platform",
+          "username": "username",
+          "content": "content",
+          "timestamp": "timestamp",
+          "user_id": "user_id",
+          "avatar": "avatar",
+          "fan_club_type": "fan_club_type",
+          "fan_club_level": "fan_club_level"
+        }
+      },
+      "share": {
+        "ai_vtuber_type": "share",
+        "field_mapping": {
+          "platform": "platform",
+          "username": "username",
+          "content": "content",
+          "timestamp": "timestamp",
+          "user_id": "user_id",
+          "avatar": "avatar",
+          "share_type": "share_type"
+        }
+      },
+      "live_end": {
+        "ai_vtuber_type": "live_end",
+        "field_mapping": {
+          "platform": "platform",
+          "content": "content",
+          "timestamp": "timestamp",
+          "room_id": "room_id",
+          "room_title": "room_title"
+        }
+      }
+    }
+  },
+  "default_values": {
+    "platform": "unknown",
+    "timestamp": null,
+    "user_id": "",
+    "avatar": "",
+    "content": ""
+  },
+  "validation_rules": {
+    "required_fields": ["type", "platform", "username", "content"],
+    "max_content_length": 1000,
+    "max_username_length": 50,
+    "supported_platforms": ["bilibili", "douyin", "kuaishou", "twitch", "youtube", "tiktok", "douyin_live_companion"]
+  }
+}

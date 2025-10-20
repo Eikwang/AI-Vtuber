@@ -23,7 +23,8 @@ from pypinyin import pinyin, Style
 
 import pyaudio
 
-from .my_log import logger
+# 延迟导入logger以避免循环导入
+from utils.my_log import logger
 
 
 
@@ -805,6 +806,58 @@ class Common:
         else:
             return random.choice(strings)
 
+    # llm响应内容<> </>标签内容过滤 主要针对deepseek返回
+    def llm_resp_content_filter_tags(self, text: str, filter_state: dict) -> str:
+        """
+        过滤标签内容的辅助函数
+        
+        Args:
+            text: 要处理的文本
+            filter_state: 过滤状态字典，包含：
+                - is_filtering: 是否正在过滤
+                - current_tag: 当前正在处理的标签
+                - buffer: 未处理完的文本缓冲
+        
+        Returns:
+            过滤后的文本
+        """
+        result = ""
+        i = 0
+
+        # logger.debug(f"[过滤] 标签过滤前：{text}")
+        # logger.debug(f"[过滤] 过滤状态：{filter_state}")
+        
+        while i < len(text):
+            if text[i] == '<':
+                # logger.debug(f"[过滤] 发现开始标签：{text[i]}")
+                # 可能是开始标签
+                tag_end = text.find('>', i)
+                if tag_end != -1:
+                    tag = text[i:tag_end+1]
+                    if tag.startswith('</'):
+                        # logger.debug(f"[过滤] 发现结束标签：{tag}")
+                        # 结束标签
+                        tag_name = tag[2:-1]
+                        if filter_state['is_filtering'] and tag_name == filter_state['current_tag']:
+                            filter_state['is_filtering'] = False
+                            filter_state['current_tag'] = None
+                    else:
+                        # logger.debug(f"[过滤] 发现开始标签：{tag}")
+                        # 开始标签
+                        tag_name = tag[1:-1]
+                        filter_state['is_filtering'] = True
+                        filter_state['current_tag'] = tag_name
+                    i = tag_end + 1
+                    continue
+                    
+            if not filter_state['is_filtering']:
+                # logger.debug(f"[过滤] 发现非过滤状态：{text[i]}")
+                result += text[i]
+            i += 1
+
+        # logger.debug(f"[过滤] 标签过滤后：{result}")
+        return result
+
     """
     
             .@@@             @@@        @@^ =@@@@@@@@    /@@ /@@              =@@@@@*,@@\]]]]  ,@@@@@@@@@@@@*                      .@@@         @@/.\]`@@@       =@@\]]]]]]]   =@@..@@@@@@@@@   =@@\   /@@^           
@@ -1282,7 +1335,7 @@ class Common:
             logger.error(f"请求出错: {e}")
             return None
 
-    async def send_async_request(self, url: str, method: str='GET', json_data: dict=None, resp_data_type: str="json", timeout: int=60, proxy: str=None):
+    async def send_async_request(self, url: str, method: str='GET', json_data: dict=None, resp_data_type: str="json", timeout: int=60, proxy: str=None, max_retries: int=3, retry_delay: float=1.0):
         """
         发送异步 HTTP 请求并返回结果
 
@@ -1293,52 +1346,77 @@ class Common:
             resp_data_type (str): 返回数据的类型（json | content）
             timeout (int): 请求超时时间
             proxy (str): 代理服务器地址
+            max_retries (int): 最大重试次数
+            retry_delay (float): 重试间隔时间（秒）
 
         Returns:
             dict|str: 包含响应的 JSON数据 | 字符串数据
         """
         import aiohttp
+        import asyncio
+        # 延迟导入logger以避免循环导入
+        from .my_log import logger
 
         headers = {'Content-Type': 'application/json'}
+        
+        for attempt in range(max_retries + 1):
+            try:
+                # 创建超时配置
+                timeout_config = aiohttp.ClientTimeout(total=timeout)
+                
+                # 创建 aiohttp.ClientSession
+                async with aiohttp.ClientSession(timeout=timeout_config) as session:
+                    if method in ['GET', 'get']:
+                        async with session.get(url, headers=headers, proxy=proxy) as response:
+                            # 检查请求是否成功
+                            response.raise_for_status()
 
-        try:
-            # 创建 aiohttp.ClientSession
-            async with aiohttp.ClientSession() as session:
-                if method in ['GET', 'get']:
-                    async with session.get(url, headers=headers, timeout=timeout, proxy=proxy) as response:
-                        # 检查请求是否成功
-                        response.raise_for_status()
+                            if resp_data_type == "json":
+                                # 解析响应的 JSON 数据
+                                result = await response.json()
+                            else:
+                                result = await response.read()
 
-                        if resp_data_type == "json":
-                            # 解析响应的 JSON 数据
-                            result = await response.json()
-                        else:
-                            result = await response.read()
+                    elif method in ['POST', 'post']:
+                        async with session.post(url, headers=headers, data=json.dumps(json_data), proxy=proxy) as response:
+                            # 检查请求是否成功
+                            response.raise_for_status()
 
-                elif method in ['POST', 'post']:
-                    async with session.post(url, headers=headers, data=json.dumps(json_data), timeout=timeout, proxy=proxy) as response:
-                        # 检查请求是否成功
-                        response.raise_for_status()
+                            if resp_data_type == "json":
+                                # 解析响应的 JSON 数据
+                                result = await response.json()
+                            else:
+                                result = await response.read()
 
-                        if resp_data_type == "json":
-                            # 解析响应的 JSON 数据
-                            result = await response.json()
-                        else:
-                            result = await response.read()
+                    else:
+                        raise ValueError('无效 method. 支持的 methods 为 GET 和 POST.')
 
+                    return result
+
+            except asyncio.TimeoutError as e:
+                if attempt < max_retries:
+                    logger.warning(f"请求超时 ({timeout}秒)，第{attempt + 1}次重试: {url}")
+                    await asyncio.sleep(retry_delay * (attempt + 1))  # 指数退避
+                    continue
                 else:
-                    raise ValueError('无效 method. 支持的 methods 为 GET 和 POST.')
-
-                return result
-
-        except aiohttp.ClientError as e:
-            logger.error(traceback.format_exc())
-            logger.error(f"请求出错: {e}")
-            return None
-        except Exception as e:
-            logger.error(traceback.format_exc())
-            logger.error(f"请求出错: {e}")
-            return None
+                    logger.error(f"请求超时，已达到最大重试次数 ({max_retries}): {url}")
+                    logger.debug(f"超时详情: {e}")
+                    return None
+            except aiohttp.ClientError as e:
+                if attempt < max_retries:
+                    logger.warning(f"网络请求错误，第{attempt + 1}次重试: {e}")
+                    await asyncio.sleep(retry_delay * (attempt + 1))
+                    continue
+                else:
+                    logger.error(f"网络请求错误，已达到最大重试次数: {e}")
+                    logger.debug(traceback.format_exc())
+                    return None
+            except Exception as e:
+                logger.error(traceback.format_exc())
+                logger.error(f"请求出错: {e}")
+                return None
+        
+        return None
 
     async def send_heartbeat(self):
         """
@@ -1348,7 +1426,8 @@ class Common:
             dict|str: 包含响应的 JSON数据 | 字符串数据
         """
         try:
-            await self.send_async_request("http://124.221.164.49:8001/heartbeat", "POST", None)
+            pass
+            # await self.send_async_request("http://124.221.164.49:8001/heartbeat", "POST", None)
         except Exception as e:
             # logger.error(traceback.format_exc())
             # logger.error(f"请求出错: {e}")

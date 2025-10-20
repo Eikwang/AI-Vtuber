@@ -1,0 +1,46 @@
+{
+  "current_script": "通用平台.js",
+  "script_directory": ".",
+  "available_scripts": [
+    {
+      "name": "默认弹幕监听脚本",
+      "filename": "danmaku_listener.js",
+      "path": "danmaku_listener.js",
+      "description": "内置的默认弹幕监听脚本",
+      "is_builtin": true
+    },
+    {
+      "name": "洛曦直播弹幕监听脚本",
+      "filename": "洛曦 直播弹幕监听 转发至本地WS服务端.js",
+      "path": "d:\\AI\\test\\AI-Vtuber\\Scripts\\直播ws脚本\\洛曦 直播弹幕监听 转发至本地WS服务端.js",
+      "description": "洛曦项目的弹幕监听脚本",
+      "is_builtin": false
+    },
+    {
+      "name": "通用平台V4.0内存优化版",
+      "filename": "通用平台_V4_内存优化版.js",
+      "path": ".\\直播监听脚本\\通用平台_V4_内存优化版.js",
+      "description": "V4.0内存优化版本，解决WebSocket和DOM泄漏问题",
+      "is_builtin": true,
+      "version": "4.0",
+      "features": [
+        "资源管理器",
+        "内存泄漏检测",
+        "自动清理",
+        "连接池管理"
+      ]
+    },
+    {
+      "name": "自动发现: 通用平台.js",
+      "filename": "通用平台.js",
+      "path": "d:\\AI\\AI-Vtuber\\DanmakuListener\\直播监听脚本\\通用平台.js",
+      "description": "从 d:\\AI\\AI-Vtuber\\DanmakuListener\\直播监听脚本 自动扫描发现",
+      "is_builtin": false
+    }
+  ],
+  "auto_scan_directory": true,
+  "scan_directories": [
+    "d:\\AI\\AI-Vtuber\\DanmakuListener\\直播监听脚本"
+  ],
+  "last_updated": "2025-10-09T15:37:39.203807"
+}

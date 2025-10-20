@@ -1,0 +1,89 @@
+{
+  "current_script": "通用平台.js",
+  "script_directory": ".",
+  "available_scripts": [
+    {
+      "name": "通用平台V4.0内存优化版",
+      "filename": "通用平台_V4_内存优化版.js",
+      "path": ".\\直播监听脚本\\通用平台_V4_内存优化版.js",
+      "description": "V4.0内存优化版本，解决WebSocket和DOM泄漏问题",
+      "is_builtin": true,
+      "version": "4.0",
+      "features": [
+        "资源管理器",
+        "内存泄漏检测",
+        "自动清理",
+        "连接池管理"
+      ]
+    },
+    {
+      "name": "洛曦直播弹幕监听脚本",
+      "filename": "洛曦 直播弹幕监听 转发至本地WS服务端.js",
+      "path": "d:\\AI\\test\\AI-Vtuber\\Scripts\\直播ws脚本\\洛曦 直播弹幕监听 转发至本地WS服务端.js",
+      "description": "洛曦项目的弹幕监听脚本",
+      "is_builtin": false
+    },
+    {
+      "name": "自动发现: monitor.js",
+      "filename": "monitor.js",
+      "path": ".\\static\\monitor.js",
+      "description": "从 . 自动扫描发现",
+      "is_builtin": false
+    },
+    {
+      "name": "自动发现: script.js",
+      "filename": "script.js",
+      "path": ".\\static\\script.js",
+      "description": "从 . 自动扫描发现",
+      "is_builtin": false
+    },
+    {
+      "name": "自动发现: douyu_ws_client.js",
+      "filename": "douyu_ws_client.js",
+      "path": "d:\\AI\\test\\AI-Vtuber\\Scripts\\直播ws脚本\\douyu_ws_client.js",
+      "description": "从 d:\\AI\\test\\AI-Vtuber\\Scripts\\直播ws脚本 自动扫描发现",
+      "is_builtin": false
+    },
+    {
+      "name": "自动发现: pdd重定向.js",
+      "filename": "pdd重定向.js",
+      "path": "d:\\AI\\test\\AI-Vtuber\\Scripts\\直播ws脚本\\pdd重定向.js",
+      "description": "从 d:\\AI\\test\\AI-Vtuber\\Scripts\\直播ws脚本 自动扫描发现",
+      "is_builtin": false
+    },
+    {
+      "name": "自动发现: 快手逆向.js",
+      "filename": "快手逆向.js",
+      "path": ".\\直播监听脚本\\快手逆向.js",
+      "description": "从 . 自动扫描发现",
+      "is_builtin": false
+    },
+    {
+      "name": "自动发现: 通用平台.js",
+      "filename": "通用平台.js",
+      "path": ".\\直播监听脚本\\通用平台.js",
+      "description": "从 . 自动扫描发现",
+      "is_builtin": false
+    },
+    {
+      "name": "自动发现: test_regex.js",
+      "filename": "test_regex.js",
+      "path": ".\\test_regex.js",
+      "description": "从 . 自动扫描发现",
+      "is_builtin": false
+    },
+    {
+      "name": "自动发现: settings.js",
+      "filename": "settings.js",
+      "path": ".\\static\\settings.js",
+      "description": "从 . 自动扫描发现",
+      "is_builtin": false
+    }
+  ],
+  "auto_scan_directory": true,
+  "scan_directories": [
+    ".",
+    "d:\\AI\\test\\AI-Vtuber\\Scripts\\直播ws脚本"
+  ],
+  "last_updated": "2025-10-10T08:32:18.954892"
+}

@@ -46,21 +46,23 @@
 import sys
 import logging
 from loguru import logger
+from datetime import datetime, timezone, timedelta
 
-from utils.common import Common
 from utils.config import Config
 
 # 配置文件路径
 config_path = 'config.json'
-common = Common()
 
-logger.debug("配置文件路径=" + str(config_path))
+# logger.debug("配置文件路径=" + str(config_path))
 
 # 实例化配置类
 config = Config(config_path)
 
+# 获取北京时间
+beijing_tz = timezone(timedelta(hours=8))
+
 # 获取当前时间并生成日志文件路径
-file_path = "./log/log-" + common.get_bj_time(1) + ".txt"
+file_path = f"./log/log-{datetime.now(beijing_tz).strftime('%Y-%m-%d')}.txt"
 
 # 配置 logger
 def configure_logger(file_path, log_level, max_file_size):

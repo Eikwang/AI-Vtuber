@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "sessions": {
+    "be042e69-c4b3-4115-8e92-10e12d4a8d1c": {
+      "status": "stopped",
+      "browser_tab_id": null,
+      "start_time": "2025-10-05T19:49:20.865153",
+      "last_heartbeat": "2025-10-20T08:17:51.724459",
+      "error_message": null,
+      "reconnect_count": 0,
+      "message_count": 0,
+      "error_count": 6432,
+      "cpu_usage": 0.0,
+      "memory_usage": 0.0
+    },
+    "7eafa768-6ef0-4a63-acec-d8ea69245f10": {
+      "status": "stopped",
+      "browser_tab_id": null,
+      "start_time": "2025-10-05T19:50:24.169812",
+      "last_heartbeat": "2025-10-17T14:58:00.246907",
+      "error_message": null,
+      "reconnect_count": 0,
+      "message_count": 0,
+      "error_count": 2912,
+      "cpu_usage": 0.0,
+      "memory_usage": 0.0
+    },
+    "9eaa096a-e70d-42fe-96e7-a3e4f5a28719": {
+      "status": "stopped",
+      "browser_tab_id": null,
+      "start_time": "2025-10-10T08:35:51.057956",
+      "last_heartbeat": "2025-10-15T19:29:07.208075",
+      "error_message": null,
+      "reconnect_count": 0,
+      "message_count": 0,
+      "error_count": 4765,
+      "cpu_usage": 0.0,
+      "memory_usage": 0.0
+    }
+  }
+}

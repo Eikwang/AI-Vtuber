@@ -6,7 +6,7 @@ aiofiles==23.2.1
     # via
     #   gradio
     #   nicegui
-aiohttp==3.9.1
+aiohttp==3.9.2
     # via
     #   --override overrides.txt
     #   bilibili-api-python
@@ -81,6 +81,7 @@ cachetools==5.4.0
     #   gptcache
     #   zhipuai
 certifi==2024.7.4
+urllib3==1.26.20
     # via
     #   curl-cffi
     #   httpcore

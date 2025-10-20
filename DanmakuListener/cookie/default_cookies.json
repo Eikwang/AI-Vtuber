@@ -1,0 +1,9 @@
+{
+  "cookies": [],
+  "origins": [],
+  "metadata": {
+    "created_by": "fix_cookie_issue.py",
+    "purpose": "防止系统加载不存在的Cookie文件",
+    "is_valid": false
+  }
+}

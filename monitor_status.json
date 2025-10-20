@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "sessions": {
+    "be042e69-c4b3-4115-8e92-10e12d4a8d1c": {
+      "status": "running",
+      "browser_tab_id": null,
+      "start_time": "2025-10-09T14:05:19.957756",
+      "last_heartbeat": "2025-10-09T17:39:44.764474",
+      "error_message": null,
+      "reconnect_count": 0,
+      "message_count": 0,
+      "error_count": 229,
+      "cpu_usage": 0.0,
+      "memory_usage": 0.0
+    }
+  }
+}

@@ -1,0 +1,1762 @@
+{
+  "timestamp": "2025-10-20T08:14:19.747609",
+  "restart_count": 240,
+  "states": [
+    {
+      "url_id": "be042e69-c4b3-4115-8e92-10e12d4a8d1c",
+      "url": "https://www.douyu.com/beta/1126960?dyshid=12249dd2-45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
+      "script_name": "通用平台.js",
+      "cookies_data": [
+        {
+          "name": "tester_10000000",
+          "value": "YcqJxeNfg6hykiA8QhuVOqRzSK1r9u9BoquYm1d%2B3xg%3D%2833fa55572d0e7cae7672165c32150098c4cb7b54%29",
+          "domain": "abvolcapi.douyucdn.cn",
+          "path": "/service/2/abtest_config",
+          "expires": 1761005067.273569,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "3rdPartyCookie",
+          "value": "1760091649752",
+          "domain": "main.m.tmall.com",
+          "path": "/app/vip/h5-webapp",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_uab_collina",
+          "value": "175964836693079289817472",
+          "domain": "login.taobao.com",
+          "path": "/member",
+          "expires": 1794208366.931248,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "6333762c95037d16",
+          "value": "TUBsp5kpbjV7qhGo6zdYzDZGAa%2Bcz%2Bca0CqIaPwHyflln12DhBcTN4mKZM6gekGaHM%2BJFKZpxXEbafgFVyZwhV5L6cjRpjPwI%2FWjMHlbbkj1S39Fs0Pr2tJdysXf6hCfG13%2BpJHbYed8%2FYl7Upx6VJ9o%2Bv2S61owZ5X5%2BM4R1ds%2FizR3didT%2BdKwg7OpMqfG%2BokT1bsXD8UGDXT79j9vW%2Bc0myMUCk%2FLVHYOlKPg%2FsRC73Yciq%2Fl8uNCrMglelLZ%2BsokTIcVPPrkePEV24K58w1%2B72QGoQ9sCs4Pb6IOYWTzVbF%2BYOUFaQ%3D%3D",
+          "domain": "www.douyu.com",
+          "path": "/beta",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "_TDID_CK",
+          "value": "1760919259495",
+          "domain": "www.douyu.com",
+          "path": "/beta",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_did",
+          "value": "45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": 1762166704.032994,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "mantine-color-scheme-value",
+          "value": "light",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_web_id",
+          "value": "7557341775921175054",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1779062667.528444,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_ab_pmt",
+          "value": "20100212%23webnewhome%23B%2C20100249%23webTagRank%23B%2C20100248%23webTagHover%23B%2C20100254%23WebTool0703%23new%2C1854%23newWebLive%23B%2C20100272%23all_lists_sort%23c",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1779062667.528749,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_ab_ver_all",
+          "value": "20100212%2C20100249%2C20100248%2C20100254%2C1854%2C20100272",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1779062667.529008,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_ab_vs",
+          "value": "webnewhome%3DB%2CwebTagRank%3DB%2CwebTagHover%3DB%2CWebTool0703%3Dnew%2CnewWebLive%3DB%2Call_lists_sort%3Dc",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1779062667.529249,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "dy_did",
+          "value": "45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": 1795478667.259157,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_did",
+          "value": "45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1795478667.259265,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "dy_did",
+          "value": "45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1795478670.777928,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "HMACCOUNT_BFESS",
+          "value": "C6FAEDC986DBE0DC",
+          "domain": ".hm.baidu.com",
+          "path": "/",
+          "expires": 1794140754.341385,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "Hm_lvt_e99aee90ec1b2106afe7ec3b199020a7",
+          "value": "1759580754",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": 1792454667,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "HMACCOUNT",
+          "value": "C6FAEDC986DBE0DC",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "_ga",
+          "value": "GA1.1.1350926156.1759580755",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": 1795478668.232215,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_did",
+          "value": "45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
+          "domain": "passport.douyu.com",
+          "path": "/",
+          "expires": 1794202771.876301,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "PHPSESSID",
+          "value": "l3dicj3ct4m6k09qhaqn3jslo5",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "last_login_way",
+          "value": "wx",
+          "domain": "passport.douyu.com",
+          "path": "/",
+          "expires": 1762234777.925697,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "LTP0",
+          "value": "9eb9ebmBRz0G2k10q3jtoozxrD6EHnloNzrCtw9XesFVZ%2FyqItASxrPS%2FoKJ1hB5Na4NwZZstA5tw6gjixmJRQ2X2GiB2qccLJGxKa1EjVBpuifOU4Om%2F2HB2NDtrScQJVxqn2cDLP0eJXYP7WbBPMKDxu%2FM2rsuogXAclU7LOwajmwOV4b0TBucec33LzuiIDs1aBrA",
+          "domain": "passport.douyu.com",
+          "path": "/",
+          "expires": 1775410777.925731,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_avatar",
+          "value": "https%3A%2F%2Fapic.douyucdn.cn%2Fupload%2Favatar_v3%2F201906%2F2a9f2266e5db4d7888d02de252bdc0f0_",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_ssid",
+          "value": "1729707712390787889",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1779062667.528187,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "dy_teen_mode",
+          "value": "%7B%22uid%22%3A%22304389586%22%2C%22status%22%3A0%2C%22birthday%22%3A%22%22%2C%22password%22%3A%22%22%7D",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": 1795478668.316462,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "arms_uid",
+          "value": "4aa3f3bf-05d5-4148-9e53-68088fe3231b",
+          "domain": "tbzb.taobao.com",
+          "path": "/",
+          "expires": 1775200365.445097,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "XSRF-TOKEN",
+          "value": "f480812e-3af3-4a3b-946a-c0238d8342a4",
+          "domain": "pc-growht-rta.taobao.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "t",
+          "value": "6251e248bf7c422d9b68729fb04ca34b",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529748,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_tb_token_",
+          "value": "eeeebe6e9837e",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.530043,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "thw",
+          "value": "cn",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1791184365.72702,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "cna",
+          "value": "bAhpIc0wdgACAQ7cuMxPvIQe",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1794208365.755048,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "XSRF-TOKEN",
+          "value": "275f8d53-3e22-4814-a870-855ef488f041",
+          "domain": "login.taobao.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "_samesite_flag_",
+          "value": "true",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie2",
+          "value": "1ab38559681774072cac0c2ea5b761cf",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529821,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "arms_uid",
+          "value": "7fae757c-90ff-4c68-8dbe-d34047098e05",
+          "domain": "login.taobao.com",
+          "path": "/",
+          "expires": 1775200367.10006,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cna",
+          "value": "bAhpIc0wdgACAQ7cuMxPvIQe",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": 1794208368.495725,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "wk_cookie2",
+          "value": "17e97e73db0b180d8950d664ab78262f",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1765304477.435765,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "wk_unb",
+          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1765304477.435805,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "lgc",
+          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529712,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cancelledSubSites",
+          "value": "empty",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.52973,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "dnk",
+          "value": "%5Cu7231%5Cu662F%5Cu5E0C%5Cu671B%5Cu7684%5Cu660E%5Cu706F",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529786,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "tracknick",
+          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1791656479.529892,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "lid",
+          "value": "%E8%AF%97%E5%A9%B7%E6%88%91%E8%80%81%E5%A9%86",
+          "domain": ".login.taobao.com",
+          "path": "/",
+          "expires": 1791656479.529954,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "dnk",
+          "value": "%5Cu7231%5Cu662F%5Cu5E0C%5Cu671B%5Cu7684%5Cu660E%5Cu706F",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "tracknick",
+          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "lid",
+          "value": "%E8%AF%97%E5%A9%B7%E6%88%91%E8%80%81%E5%A9%86",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": 1792092512.686625,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_l_g_",
+          "value": "Ug%3D%3D",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "unb",
+          "value": "2206656316741",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "lgc",
+          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie1",
+          "value": "BYS5m6HAijHhlqmHQ2YQTpkrjfWVAlNwk1Sw2RZMhKI%3D",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "login",
+          "value": "true",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "wk_cookie2",
+          "value": "17e97e73db0b180d8950d664ab78262f",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": 1763148512.686683,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie17",
+          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie2",
+          "value": "1ab38559681774072cac0c2ea5b761cf",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_nk_",
+          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cancelledSubSites",
+          "value": "empty",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sg",
+          "value": "%E5%A9%8610",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "t",
+          "value": "6251e248bf7c422d9b68729fb04ca34b",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sn",
+          "value": "",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_tb_token_",
+          "value": "eeeebe6e9837e",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "wk_unb",
+          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": 1763148512.686751,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "dnk",
+          "value": "%5Cu7231%5Cu662F%5Cu5E0C%5Cu671B%5Cu7684%5Cu660E%5Cu706F",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "tracknick",
+          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "lid",
+          "value": "%E8%AF%97%E5%A9%B7%E6%88%91%E8%80%81%E5%A9%86",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": 1792092512.728248,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_l_g_",
+          "value": "Ug%3D%3D",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "unb",
+          "value": "2206656316741",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "lgc",
+          "value": "",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie1",
+          "value": "BYS5m6HAijHhlqmHQ2YQTpkrjfWVAlNwk1Sw2RZMhKI%3D",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "login",
+          "value": "true",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "wk_cookie2",
+          "value": "17e97e73db0b180d8950d664ab78262f",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": 1763148512.728359,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie17",
+          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie2",
+          "value": "1ab38559681774072cac0c2ea5b761cf",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_nk_",
+          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cancelledSubSites",
+          "value": "empty",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sg",
+          "value": "%E5%A9%8610",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "t",
+          "value": "6251e248bf7c422d9b68729fb04ca34b",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sn",
+          "value": "",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_tb_token_",
+          "value": "eeeebe6e9837e",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "wk_unb",
+          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": 1763148512.72843,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "dnk",
+          "value": "%5Cu7231%5Cu662F%5Cu5E0C%5Cu671B%5Cu7684%5Cu660E%5Cu706F",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "tracknick",
+          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "lid",
+          "value": "%E8%AF%97%E5%A9%B7%E6%88%91%E8%80%81%E5%A9%86",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": 1792092512.749501,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_l_g_",
+          "value": "Ug%3D%3D",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "unb",
+          "value": "2206656316741",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "lgc",
+          "value": "",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie1",
+          "value": "BYS5m6HAijHhlqmHQ2YQTpkrjfWVAlNwk1Sw2RZMhKI%3D",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "login",
+          "value": "true",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "wk_cookie2",
+          "value": "17e97e73db0b180d8950d664ab78262f",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": 1763148512.749558,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie17",
+          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie2",
+          "value": "1ab38559681774072cac0c2ea5b761cf",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_nk_",
+          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cancelledSubSites",
+          "value": "empty",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sg",
+          "value": "%E5%A9%8610",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "t",
+          "value": "6251e248bf7c422d9b68729fb04ca34b",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sn",
+          "value": "",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_tb_token_",
+          "value": "eeeebe6e9837e",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "wk_unb",
+          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": 1763148512.749625,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cnaui",
+          "value": "2206656316741",
+          "domain": ".mmstat.com",
+          "path": "/",
+          "expires": 1794208429.096397,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "useNativeIM",
+          "value": "false",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1791184458,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "sessionid",
+          "value": "BgAA721ca8B4COlYxIwewGNPbm8WfNPrp7MyfM%2B%2BISctAzc3N4PAvKJgfzD1ZbVV%2BloQGJ%2FEuuRsfZJeI2VVSfP4160pcffOAJzjfkAsYQmz",
+          "domain": "channels.weixin.qq.com",
+          "path": "/",
+          "expires": 1794231988.242249,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "wxuin",
+          "value": "3693769234",
+          "domain": "channels.weixin.qq.com",
+          "path": "/",
+          "expires": 1794231988.242288,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "JSESSIONID",
+          "value": "5765AA72B897E2FEF63394DFDA41F962",
+          "domain": "pc-growht-rta.taobao.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "3PcFlag",
+          "value": "1760091649851",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1760984449.557296,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sgcookie",
+          "value": "E1000zk6RZCgg2YEe3iozJm6d49laAU2mZce%2BGLAUHFCaVeKL4CwY2sq%2FqOZTgEb%2FTjzrsnBWCTm1Uu4Jq%2FbACiyl8L5aKCrs8xoQqcORimYvYYm4DRwmOuKTEqKnfJ%2FYq%2BB",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1791656477.435814,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "unb",
+          "value": "2206656316741",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529535,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "csg",
+          "value": "7059a264",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529665,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie17",
+          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529767,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "skt",
+          "value": "19bb66957f7614b9",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529803,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "lc",
+          "value": "V3oTUmDaSm8VMGGxEcwM",
+          "domain": ".login.taobao.com",
+          "path": "/",
+          "expires": 1762683679.529915,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_l_g_",
+          "value": "Ug%3D%3D",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529976,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sg",
+          "value": "%E5%A9%8610",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529992,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_nk_",
+          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.530009,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cookie1",
+          "value": "BYS5m6HAijHhlqmHQ2YQTpkrjfWVAlNwk1Sw2RZMhKI%3D",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.530025,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "uc1",
+          "value": "pas=0&cookie14=UoYY4%2FvofBAumQ%3D%3D&cookie16=UIHiLt3xCS3yM2h4eKHS9lpEOw%3D%3D&cookie15=UtASsssmOIJ0bQ%3D%3D&existShop=false&cookie21=UIHiLt3xThN%2B",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529601,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sn",
+          "value": "",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529627,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "uc3",
+          "value": "id2=UUphzOSEjD3QCxjwBA%3D%3D&vt3=F8dD2k0%2FH0G41W6y0gI%3D&lg2=VT5L2FSpMGV7TQ%3D%3D&nk2=qTnm4dUid4mFBQ%3D%3D",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529645,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "existShop",
+          "value": "MTc2MDA5MTY3OQ%3D%3D",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529839,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "uc4",
+          "value": "id4=0%40U2grF89D4F8La%2BfwZv90xvS4HxBQYQlQ&nk4=0%40q3y4ui2FspYcR9Ta8UiBUWM6dA%2Ft",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1762683679.529856,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_cc_",
+          "value": "Vq8l%2BKCLiw%3D%3D",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1791656479.529934,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "_hvn_lgc_",
+          "value": "0",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1791660512.494668,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "havana_lgc2_0",
+          "value": "eyJoaWQiOjIyMDY2NTYzMTY3NDEsInNnIjoiNmY2Yzc2Y2MxODJlYjA5MmMzNmE1ZWEwZTMzMWY5YjAiLCJzaXRlIjowLCJ0b2tlbiI6IjFlVDVlX2VDLU9MVDZfdzlES3MtUmF3In0",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1791660512.494689,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sgcookie",
+          "value": "E1000zk6RZCgg2YEe3iozJm6d49laAU2mZce%2BGLAUHFCaVeKL4CwY2sq%2FqOZTgEb%2FTjzrsnBWCTm1Uu4Jq%2FbACiyl8L5aKCrs8xoQqcORimYvYYm4DRwmOuKTEqKnfJ%2FYq%2BB",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "csg",
+          "value": "7059a264",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sgcookie",
+          "value": "E1000zk6RZCgg2YEe3iozJm6d49laAU2mZce%2BGLAUHFCaVeKL4CwY2sq%2FqOZTgEb%2FTjzrsnBWCTm1Uu4Jq%2FbACiyl8L5aKCrs8xoQqcORimYvYYm4DRwmOuKTEqKnfJ%2FYq%2BB",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "csg",
+          "value": "7059a264",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "isg",
+          "value": "BCAgnwcvXIuI3eCFUFHhMlkV8S7yKQTzbOk8m5ox7DvOlcC_QjnUg_YmLTwVJbzL",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": 1775643649,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "mtcna",
+          "value": "Y2M2eXMzbWdrcDU1MTE=",
+          "domain": "hudong.alicdn.com",
+          "path": "/",
+          "expires": 1761387680.882592,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "aui",
+          "value": "2206656316741",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1794651680.939521,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "sca",
+          "value": "91366977",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "arms_uid",
+          "value": "51edfef4-08b0-48e4-8475-7a43b35e01ab",
+          "domain": "www.taobao.com",
+          "path": "/",
+          "expires": 1775643681.220367,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "uc1",
+          "value": "pas",
+          "domain": ".fliggy.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "uc1",
+          "value": "pas",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "uc3",
+          "value": "id2",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "uc4",
+          "value": "id4",
+          "domain": ".tmall.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "uc1",
+          "value": "pas",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sgcookie",
+          "value": "E1000zk6RZCgg2YEe3iozJm6d49laAU2mZce%2BGLAUHFCaVeKL4CwY2sq%2FqOZTgEb%2FTjzrsnBWCTm1Uu4Jq%2FbACiyl8L5aKCrs8xoQqcORimYvYYm4DRwmOuKTEqKnfJ%2FYq%2BB",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "csg",
+          "value": "7059a264",
+          "domain": ".tmall.hk",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "aui",
+          "value": "2206656316741",
+          "domain": ".mmstat.com",
+          "path": "/",
+          "expires": 1795087744.299249,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sca",
+          "value": "53283aa4",
+          "domain": ".mmstat.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cna",
+          "value": "bAhpIc0wdgACAQ7cuMxPvIQe",
+          "domain": ".mmstat.com",
+          "path": "/",
+          "expires": 1795087711.952486,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "v1",
+          "value": "bBpFK<nI^d=N):Ic4Mnt",
+          "domain": ".mediav.com",
+          "path": "/",
+          "expires": 1795087711.523293,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "cbc",
+          "value": "T2gAr00jr3CSqdoomRoMnmOC0R_IS_LfGTJW1JzW99u469bzhZKfzKAMBJpe-7HUtpk=",
+          "domain": ".ynuf.aliapp.org",
+          "path": "/",
+          "expires": 1792063711.717681,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "tbsa",
+          "value": "e0edf08ddcb735c527175821_1760527712_1",
+          "domain": ".mmstat.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "atpsida",
+          "value": "d4a73d5746503f296befbe0b_1760527712_1",
+          "domain": ".mmstat.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "havana_lgc_exp",
+          "value": "1791631712613",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1791660512.494681,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "sdkSilent",
+          "value": "1760556512613",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "havana_sdkSilent",
+          "value": "1760556512613",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "tfstk",
+          "value": "gCanH14_XkoIfJTBx_0CvK6ckzsOv2gSb8L-e4HPbAk6y_tRVlczeR15O2FrE82tC4FKw6OQf-F2JyIIyU0IP4WAHZ3usWgSzrrzNbAI7bheYanEUduIwr8k1ibYOWOZztBAkZdutZQy83kzUVuZ9X0ra4uPscloN48E4XuZ7AGrz4kEYFkZMbLeUHuPs5ksa4JzUD5i7AGrzYyrzx9lLvzzJPWy6Z74nSA45Xmn3WkU9WUwRDtQtAc-aPl3sAPF0U8zSvmQ7MhfI9oL4SibJy7k52F0bVl_yOTEEll0wV4ldeHS8jibDcvFOXEz1ukQoTYmLyZgrVUVFEe0pRzxyy5Jj-ooKlzEjQ8rW2qgEu02Q1GL45ZrdrXkovzQsonuAtxb35FYRcalndk7vjgZ1zB68YqZag-9bnyhFUicdoxWVDlsIxNfVsa1H2A_51fMmYiE1XkAs1xWIDlssA5Gsn7IYfGEM",
+          "domain": ".taobao.com",
+          "path": "/",
+          "expires": 1776079711,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "_ga_5JKQ7DTEXC",
+          "value": "deleted",
+          "domain": ".www.douyu.com",
+          "path": "/",
+          "expires": 1795239324.233091,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_auth",
+          "value": "3ca7c8BSPh3L53eK9O3YXq0VIHCBVzn%2B45HoAfbflRlATIeEPfUAw6EMb02D1DyZRsuaUXMSj%2BZvlQDzQg1LWVarBMDrY7npOgTAIMLa9ZO03LQuADgMXtg",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.60466,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_jwt_token",
+          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzYwNzAxNTkzLCJhdWQiOlsiZHkiXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjEsInVpZCI6MzA0Mzg5NTg2LCJleHAiOjE3NjEzMDYzOTMsInN1YiI6InN0Iiwia2V5IjoiZHktand0LW1kNSIsInN0ayI6IjMyZWNhZmQ2ZmNhZjdmNjAifQ.MjdhNDc2NzkzMjIzMWY4ODVjYWY5M2NmZGM0ZmM0ZjA",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604697,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_dmjwt_token",
+          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzYwNzAxNTkzLCJhdWQiOlsiZG0iXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjEsInVpZCI6MzA0Mzg5NTg2LCJleHAiOjE3NjEzMDYzOTMsInN1YiI6InN0Iiwia2V5IjoiZHktand0LW1kNSIsInN0ayI6IjMyZWNhZmQ2ZmNhZjdmNjAifQ.MGJjNjI3OTgwYzQxNjJiZjg5YjZlZmZmZTBiOGQxOTM",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604705,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "dy_auth",
+          "value": "3ed1EhrAUyUVqXPYUDj9ndqkcTv904r1YXnNAgXgGaQs7jxMYmZvKZ4y8pq9tZCeVwZy1K1dioUUD%2BaLDHo3TJXyGoM2OU%2BsIv11Fy004ZFu%2Bx50cckDEhE",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": 1761230793.604712,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "wan_auth37wan",
+          "value": "3e901eb4ae35YhNZ8qdkL4d8XaUZ6NIc9RbBhgMea4OkbqSCJnPsSRZjB4QVrAlp7T%2BvbJEFi6%2FTAakzilC1dw82FR2m0QGFqGWckkTowbS3LVroO0g",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": 1761230793.604719,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_uid",
+          "value": "304389586",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604727,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_username",
+          "value": "304389586",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604732,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_nickname",
+          "value": "%E6%9C%80%E5%88%9D%E7%9A%84%E4%BD%A0212",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604737,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_own_room",
+          "value": "1",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604743,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_groupid",
+          "value": "1",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604749,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_phonestatus",
+          "value": "1",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604754,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_ct",
+          "value": "0",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604765,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_ltkid",
+          "value": "58684083",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.60477,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_biz",
+          "value": "1",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604776,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_stk",
+          "value": "32ecafd6fcaf7f60",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1761230793.604781,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_ccn",
+          "value": "72b9fb609c1f84b04576a06aba1d28b6",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1760922255.853252,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "post-csrfToken",
+          "value": "f877c1567a16cd8fa1b514",
+          "domain": "msg.douyu.com",
+          "path": "/",
+          "expires": 1760922259.31655,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None"
+        },
+        {
+          "name": "msg_auth",
+          "value": "216cab0510ad28071c650f1502ad104d1c1da21c",
+          "domain": ".msg.douyu.com",
+          "path": "/",
+          "expires": 1760933059.417113,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "msg_uid",
+          "value": "bLA640e14ZwM",
+          "domain": ".msg.douyu.com",
+          "path": "/",
+          "expires": 1760933059.417159,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_jwt_token",
+          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzYwOTE1MDYxLCJhdWQiOlsiZHkiXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjkzLCJ1aWQiOjMwNDM4OTU4NiwiZXhwIjoxNzYxNTE5ODYxLCJzdWIiOiJzdCIsImtleSI6ImR5LWp3dC1tZDUiLCJzdGsiOiJmZTRjYTU3MmM4MjBmNTBiIn0.MDVhZGJmYmYyYjQwYTY0ZDFiZTIyYTJkNGQ2MzY5YmI",
+          "domain": ".msg.douyu.com",
+          "path": "/",
+          "expires": 1760933059.417168,
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_dmjwt_token",
+          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzYwOTE1MDYxLCJhdWQiOlsiZG0iXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjkzLCJ1aWQiOjMwNDM4OTU4NiwiZXhwIjoxNzYxNTE5ODYxLCJzdWIiOiJzdCIsImtleSI6ImR5LWp3dC1tZDUiLCJzdGsiOiJmZTRjYTU3MmM4MjBmNTBiIn0.OTM2MDlhZTgxYmUyZGUzNDY1ODA4MjkzMGNhZWRlNWM",
+          "domain": ".msg.douyu.com",
+          "path": "/",
+          "expires": 1760933059.417177,
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "Hm_lpvt_e99aee90ec1b2106afe7ec3b199020a7",
+          "value": "1760918668",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "_ga_5JKQ7DTEXC",
+          "value": "GS2.1.s1760774201$o35$g1$t1760918668$j60$l0$h206400184",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": 1795478668.231795,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "post-csrfToken",
+          "value": "vq4jlodx7fe",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "msgUnread",
+          "value": "1",
+          "domain": "msg.douyu.com",
+          "path": "/",
+          "expires": 1760919265,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "page_state": {
+        "scroll_position": {
+          "x": 0,
+          "y": 0
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "timestamp": 1760919259746
+      },
+      "last_activity": 

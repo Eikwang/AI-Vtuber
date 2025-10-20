@@ -63,10 +63,51 @@ class MY_TTS:
         if file_path == "" or file_path is None:
             return None
 
-        with open(file_path, "rb") as audio_file:
-            audio_data = audio_file.read()
-            encoded_audio = base64.b64encode(audio_data).decode('utf-8')
-        return encoded_audio
+    async def index_tts_api(self, data):
+        """Index-tts API对接喵
+
+        Args:
+            data (dict): 传参数据喵
+
+        Returns:
+            str: 音频路径
+        """
+        try:
+            url = f"{data['index_tts']['api_ip_port']}/tts"
+            
+            # 创建FormData对象用于multipart/form-data请求
+            from aiohttp import FormData
+            form_data = FormData()
+            
+            # 添加文本参数
+            form_data.add_field('text', data["content"])
+            
+            # 添加温度参数
+            form_data.add_field('temperature', str(data['index_tts']["temperature"]))
+            
+            # 添加音频文件
+            form_data.add_field(
+                'prompt_audio',
+                open(data['index_tts']["prompt_audio"], 'rb'),
+                filename=os.path.basename(data['index_tts']["prompt_audio"]),
+                content_type='audio/wav'
+            )
+            
+            logger.debug(f"Index-tts 请求参数: text={data['content']}, temperature={data['index_tts']['temperature']}")
+            
+            try:
+                return await self.download_audio("index_tts", url, self.timeout, request_type="post", data=form_data)
+            except Exception as e:
+                logger.error(traceback.format_exc())
+                logger.error(f'Index-tts API 错误，请检查您的 Index-tts API 是否启动/配置是否正确，报错内容: {e}')
+
+            return None
+            
+        except Exception as e:
+            logger.error(traceback.format_exc())
+            logger.error(f'Index-tts未知错误，请检查您的Index-tts API是否启动/配置是否正确，报错内容: {e}')
+        
+        return None
 
     async def download_audio(self, type: str, file_url: str, timeout: int=30, request_type: str="get", data=None, json_data=None, audio_suffix: str="wav"):
         async with aiohttp.ClientSession() as session:
@@ -75,11 +116,21 @@ class MY_TTS:
                     async with session.get(file_url, params=data, timeout=timeout) as response:
                         if response.status == 200:
                             content = await response.read()
-                            file_name = type + '_' + self.common.get_bj_time(4) + '.' + audio_suffix
-                            voice_tmp_path = self.common.get_new_audio_path(self.audio_out_path, file_name)
-                            with open(voice_tmp_path, 'wb') as file:
-                                file.write(content)
-                            return voice_tmp_path
+                            # Use high-entropy timestamp to avoid filename collisions and ensure directory exists; retry on PermissionError
+                            for attempt in range(3):
+                                file_name = f"{type}_" + self.common.get_bj_time(7) + (f"_{attempt}" if attempt else "") + f".{audio_suffix}"
+                                voice_tmp_path = self.common.get_new_audio_path(self.audio_out_path, file_name)
+                                try:
+                                    os.makedirs(os.path.dirname(voice_tmp_path), exist_ok=True)
+                                    with open(voice_tmp_path, 'wb') as file:
+                                        file.write(content)
+                                    logger.debug(f"{type} 写入音频成功: {voice_tmp_path}")
+                                    return voice_tmp_path
+                                except PermissionError as e:
+                                    logger.warning(f"{type} 写入音频被拒绝，重试第 {attempt+1} 次，路径: {voice_tmp_path}，错误: {e}")
+                                    await asyncio.sleep(0.05)
+                            logger.error(f"{type} 下载音频失败: 无法写入文件（权限被拒绝）")
+                            return None
                         else:
                             logger.error(f'{type} 下载音频失败: {response.status}')
                             return None
@@ -87,11 +138,21 @@ class MY_TTS:
                     async with session.post(file_url, data=data, json=json_data, timeout=timeout) as response:
                         if response.status == 200:
                             content = await response.read()
-                            file_name = type + '_' + self.common.get_bj_time(4) + '.' + audio_suffix
-                            voice_tmp_path = self.common.get_new_audio_path(self.audio_out_path, file_name)
-                            with open(voice_tmp_path, 'wb') as file:
-                                file.write(content)
-                            return voice_tmp_path
+                            # Use high-entropy timestamp to avoid filename collisions and ensure directory exists; retry on PermissionError
+                            for attempt in range(3):
+                                file_name = f"{type}_" + self.common.get_bj_time(7) + (f"_{attempt}" if attempt else "") + f".{audio_suffix}"
+                                voice_tmp_path = self.common.get_new_audio_path(self.audio_out_path, file_name)
+                                try:
+                                    os.makedirs(os.path.dirname(voice_tmp_path), exist_ok=True)
+                                    with open(voice_tmp_path, 'wb') as file:
+                                        file.write(content)
+                                    logger.debug(f"{type} 写入音频成功: {voice_tmp_path}")
+                                    return voice_tmp_path
+                                except PermissionError as e:
+                                    logger.warning(f"{type} 写入音频被拒绝，重试第 {attempt+1} 次，路径: {voice_tmp_path}，错误: {e}")
+                                    await asyncio.sleep(0.05)
+                            logger.error(f"{type} 下载音频失败: 无法写入文件（权限被拒绝）")
+                            return None
                         else:
                             logger.error(f'{type} 下载音频失败: {response.status}')
                             return None
@@ -328,7 +389,7 @@ class MY_TTS:
 
             file_path = ret["data"][1]["name"]
 
-            new_file_path = self.common.move_file(file_path, os.path.join(self.audio_out_path, 'vits_fast_' + self.common.get_bj_time(4)), 'vits_fast_' + self.common.get_bj_time(4))
+            new_file_path = self.common.move_file(file_path, os.path.join(self.audio_out_path, 'vits_fast_' + self.common.get_bj_time(7)), 'vits_fast_' + self.common.get_bj_time(7))
 
             return new_file_path
         except Exception as e:
@@ -339,29 +400,155 @@ class MY_TTS:
 
     # 请求Edge-TTS接口获取合成后的音频路径
     async def edge_tts_api(self, data):
-        try:
-            file_name = 'edge_tts_' + self.common.get_bj_time(4) + '.mp3'
+        import asyncio
+        
+        # 内部实现函数
+        async def _perform_edge_tts_synthesis():
+            import edge_tts
+            
+            # 检查是否正在关闭，避免在关闭时执行异步操作
+            try:
+                from utils.audio import Audio
+                if hasattr(Audio, 'should_shutdown') and Audio.should_shutdown:
+                    logger.info("系统正在关闭，跳过Edge TTS合成")
+                    return None
+            except (ImportError, AttributeError) as e:
+                # 如果无法导入或访问should_shutdown，继续执行
+                logger.debug(f"无法检查关闭状态: {e}")
+                pass
+            
+            # 检查事件循环状态，避免在关闭后创建新的future
+            try:
+                loop = asyncio.get_running_loop()
+                if loop.is_closed():
+                    logger.warning("事件循环已关闭，无法执行Edge TTS合成")
+                    return None
+            except RuntimeError:
+                # 没有运行中的事件循环，创建新的
+                pass
+                
+            file_name = 'edge_tts_' + self.common.get_bj_time(7) + '.mp3'
             voice_tmp_path = self.common.get_new_audio_path(self.audio_out_path, file_name)
-            # voice_tmp_path = './out/' + self.common.get_bj_time(4) + '.mp3'
-            # 过滤" '字符
             data["content"] = data["content"].replace('"', '').replace("'", '')
 
-            proxy = data["edge-tts"]["proxy"] if data["edge-tts"]["proxy"] != "" else None
+            edge_tts_config = data.get("edge-tts", {})
+            if not isinstance(edge_tts_config, dict):
+                edge_tts_config = {}
+            # 全局默认配置
+            edge_tts_default = self.config.get("edge-tts") or {}
+            # 若传入配置为空，则使用全局默认；否则将默认值与传入值合并（传入优先）
+            if not edge_tts_config:
+                edge_tts_config = edge_tts_default
+            else:
+                merged = dict(edge_tts_default)
+                merged.update(edge_tts_config)
+                edge_tts_config = merged
+            
+            proxy = edge_tts_config.get("proxy") or None
 
-            # 使用 Edge TTS 生成回复消息的语音文件
+            # 再次检查关闭标志，避免在创建连接前被关闭
+            try:
+                from utils.audio import Audio
+                if hasattr(Audio, 'should_shutdown') and Audio.should_shutdown:
+                    logger.info("系统正在关闭，跳过Edge TTS合成")
+                    return None
+            except (AttributeError, NameError, ImportError):
+                # 如果无法访问should_shutdown，继续执行
+                pass
+
             communicate = edge_tts.Communicate(
                 text=data["content"], 
-                voice=data["edge-tts"]["voice"], 
-                rate=data["edge-tts"]["rate"], 
-                volume=data["edge-tts"]["volume"], 
+                voice=edge_tts_config.get("voice", "zh-CN-XiaoyiNeural"), 
+                rate=edge_tts_config.get("rate", "+0%"), 
+                volume=edge_tts_config.get("volume", "+0%"), 
                 proxy=proxy
             )
+            
+            # 在执行异步保存前最后一次检查关闭标志
+            try:
+                from utils.audio import Audio
+                if hasattr(Audio, 'should_shutdown') and Audio.should_shutdown:
+                    logger.info("系统正在关闭，跳过Edge TTS合成")
+                    return None
+            except (AttributeError, NameError, ImportError):
+                # 如果无法访问should_shutdown，继续执行
+                pass
+                
             await communicate.save(voice_tmp_path)
-
             return voice_tmp_path
+        
+        try:
+            # 检查当前事件循环状态
+            try:
+                loop = asyncio.get_running_loop()
+                if loop.is_closed():
+                    logger.warning("检测到事件循环已关闭，尝试创建新的事件循环")
+                    raise RuntimeError("Event loop is closed")
+            except RuntimeError:
+                # 如果没有运行中的事件循环或事件循环已关闭，创建新的
+                logger.info("创建新的事件循环用于Edge TTS合成")
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                
+            return await _perform_edge_tts_synthesis()
+            
+        except RuntimeError as e:
+            if "cannot schedule new futures after interpreter shutdown" in str(e):
+                # 静默处理解释器关闭错误，直接使用命令行方式重新合成
+                try:
+                    # 强制重置Audio.should_shutdown状态
+                    from utils.audio import Audio
+                    if hasattr(Audio, 'should_shutdown'):
+                        Audio.should_shutdown = False
+                    
+                    # 使用命令行方式重新合成，避免异步问题
+                    import subprocess
+                    import sys
+
+                    file_name = 'edge_tts_' + self.common.get_bj_time(7) + '.mp3'
+                    voice_tmp_path = self.common.get_new_audio_path(self.audio_out_path, file_name)
+                    data["content"] = data["content"].replace('"', '').replace("'", '')
+
+                    edge_tts_config = data.get("edge-tts", {})
+                    if not isinstance(edge_tts_config, dict):
+                        edge_tts_config = {}
+                    # 全局默认配置
+                    edge_tts_default = self.config.get("edge-tts") or {}
+                    # 若传入配置为空，则使用全局默认；否则将默认值与传入值合并（传入优先）
+                    if not edge_tts_config:
+                        edge_tts_config = edge_tts_default
+                    else:
+                        merged = dict(edge_tts_default)
+                        merged.update(edge_tts_config)
+                        edge_tts_config = merged
+                    
+                    proxy = edge_tts_config.get("proxy")
+                    
+                    # 使用subprocess调用edge-tts CLI
+                    command = [
+                        sys.executable, "-m", "edge_tts",
+                        "--text", data["content"],
+                        "--voice", edge_tts_config.get("voice", "zh-CN-XiaoyiNeural"),
+                        "--rate", edge_tts_config.get("rate", "+0%"),
+                        "--volume", edge_tts_config.get("volume", "+0%"),
+                        "--write-media", voice_tmp_path,
+                    ]
+                    if proxy:
+                        command.extend(["--proxy", proxy])
+
+                    result = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', errors='ignore')
+
+                    if result.returncode == 0:
+                        return voice_tmp_path
+                    else:
+                        return None
+                        
+                except Exception as retry_e:
+                    return None
+            else:
+                return None
         except Exception as e:
-            logger.error(traceback.format_exc())
-            logger.error(e)
+            # 静默处理Edge TTS错误，避免不必要的日志输出
             return None
         
 
@@ -382,7 +569,7 @@ class MY_TTS:
                 fn_index=3
             )
 
-            new_file_path = self.common.move_file(result, os.path.join(self.audio_out_path, 'bark_gui_' + self.common.get_bj_time(4)), 'bark_gui_' + self.common.get_bj_time(4))
+            new_file_path = self.common.move_file(result, os.path.join(self.audio_out_path, 'bark_gui_' + self.common.get_bj_time(7)), 'bark_gui_' + self.common.get_bj_time(7))
 
             return new_file_path
         except Exception as e:
@@ -404,7 +591,7 @@ class MY_TTS:
 				fn_index=5
             )
 
-            new_file_path = self.common.move_file(result[1], os.path.join(self.audio_out_path, 'vall_e_x_' + self.common.get_bj_time(4)), 'vall_e_x_' + self.common.get_bj_time(4))
+            new_file_path = self.common.move_file(result[1], os.path.join(self.audio_out_path, 'vall_e_x_' + self.common.get_bj_time(7)), 'vall_e_x_' + self.common.get_bj_time(7))
 
             return new_file_path
         except Exception as e:
@@ -497,7 +684,7 @@ class MY_TTS:
                     api_name="/tts_enter_key"
                 )
 
-                new_file_path = self.common.move_file(result, os.path.join(self.audio_out_path, 'openai_tts_' + self.common.get_bj_time(4)), 'openai_tts_' + self.common.get_bj_time(4), "mp3")
+                new_file_path = self.common.move_file(result, os.path.join(self.audio_out_path, 'openai_tts_' + self.common.get_bj_time(7)), 'openai_tts_' + self.common.get_bj_time(7), "mp3")
 
                 return new_file_path
             elif data["type"] == "api":
@@ -511,7 +698,7 @@ class MY_TTS:
                     input=data["content"]
                 )
 
-                file_name = 'openai_tts_' + self.common.get_bj_time(4) + '.mp3'
+                file_name = 'openai_tts_' + self.common.get_bj_time(7) + '.mp3'
                 voice_tmp_path = self.common.get_new_audio_path(self.audio_out_path, file_name)
 
                 response.stream_to_file(voice_tmp_path)
@@ -617,7 +804,7 @@ class MY_TTS:
 
         file_path = get_file_path(data_json)
 
-        new_file_path = self.common.move_file(file_path, os.path.join(self.audio_out_path, 'gradio_tts_' + self.common.get_bj_time(4)), 'gradio_tts_' + self.common.get_bj_time(4))
+        new_file_path = self.common.move_file(file_path, os.path.join(self.audio_out_path, 'gradio_tts_' + self.common.get_bj_time(7)), 'gradio_tts_' + self.common.get_bj_time(7))
 
         return new_file_path
 
@@ -699,7 +886,7 @@ class MY_TTS:
                 voice_tmp_path = await websocket_client(data)
 
                 if voice_tmp_path:
-                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'gpt_sovits_' + self.common.get_bj_time(4)), 'gpt_sovits_' + self.common.get_bj_time(4))
+                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'gpt_sovits_' + self.common.get_bj_time(7)), 'gpt_sovits_' + self.common.get_bj_time(7))
 
                 return new_file_path
             elif data["type"] == "gradio_0322":
@@ -722,7 +909,7 @@ class MY_TTS:
                     api_name="/inference"
                 )
                 if voice_tmp_path:
-                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'gpt_sovits_' + self.common.get_bj_time(4)), 'gpt_sovits_' + self.common.get_bj_time(4))
+                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'gpt_sovits_' + self.common.get_bj_time(7)), 'gpt_sovits_' + self.common.get_bj_time(7))
 
                 return new_file_path
             elif data["type"] == "api":
@@ -739,9 +926,11 @@ class MY_TTS:
                 except aiohttp.ClientError as e:
                     logger.error(traceback.format_exc())
                     logger.error(f'gpt_sovits请求失败: {e}')
+                    return None
                 except Exception as e:
                     logger.error(traceback.format_exc())
                     logger.error(f'gpt_sovits未知错误: {e}')
+                    return None
             elif data["type"] == "api_0322":
                 try:
 
@@ -766,9 +955,11 @@ class MY_TTS:
                 except aiohttp.ClientError as e:
                     logger.error(traceback.format_exc())
                     logger.error(f'gpt_sovits请求失败: {e}')
+                    return None
                 except Exception as e:
                     logger.error(traceback.format_exc())
                     logger.error(f'gpt_sovits未知错误: {e}')
+                    return None
             elif data["type"] == "api_0706":
                 try:
 
@@ -785,9 +976,11 @@ class MY_TTS:
                 except aiohttp.ClientError as e:
                     logger.error(traceback.format_exc())
                     logger.error(f'gpt_sovits请求失败: {e}')
+                    return None
                 except Exception as e:
                     logger.error(traceback.format_exc())
                     logger.error(f'gpt_sovits未知错误: {e}')
+                    return None
             elif data["type"] == "v2_api_0821":
                 try:
                     data_json = {
@@ -818,9 +1011,11 @@ class MY_TTS:
                 except aiohttp.ClientError as e:
                     logger.error(traceback.format_exc())
                     logger.error(f'gpt_sovits请求失败: {e}')
+                    return None
                 except Exception as e:
                     logger.error(traceback.format_exc())
                     logger.error(f'gpt_sovits未知错误: {e}')
+                    return None
             
             elif data["type"] == "webtts":
                 try:
@@ -848,9 +1043,11 @@ class MY_TTS:
                 except aiohttp.ClientError as e:
                     logger.error(traceback.format_exc())
                     logger.error(f'gpt_sovits请求失败: {e}')
+                    return None
                 except Exception as e:
                     logger.error(traceback.format_exc())
                     logger.error(f'gpt_sovits未知错误: {e}')
+                    return None
         except Exception as e:
             logger.error(traceback.format_exc())
             logger.error(f'gpt_sovits未知错误，请检查您的gpt_sovits推理是否启动/配置是否正确，报错内容: {e}')
@@ -903,7 +1100,7 @@ class MY_TTS:
         try:
             import azure.cognitiveservices.speech as speechsdk
 
-            file_name = 'azure_tts_' + self.common.get_bj_time(4) + '.wav'
+            file_name = 'azure_tts_' + self.common.get_bj_time(7) + '.wav'
             voice_tmp_path = self.common.get_new_audio_path(self.audio_out_path, file_name)
             
             # 创建语音配置对象，使用Azure订阅密钥和服务区域
@@ -1218,7 +1415,7 @@ class MY_TTS:
 
                 if result:
                     voice_tmp_path = result[0]
-                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'chattts_' + self.common.get_bj_time(4)), 'chattts_' + self.common.get_bj_time(4))
+                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'chattts_' + self.common.get_bj_time(7)), 'chattts_' + self.common.get_bj_time(7))
 
                 return new_file_path
             elif data["type"] == "gradio_0621":
@@ -1239,7 +1436,7 @@ class MY_TTS:
 
                 if result:
                     voice_tmp_path = result[0]
-                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'chattts_' + self.common.get_bj_time(4)), 'chattts_' + self.common.get_bj_time(4))
+                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'chattts_' + self.common.get_bj_time(7)), 'chattts_' + self.common.get_bj_time(7))
 
                 return new_file_path
             elif data["type"] == "api":
@@ -1303,7 +1500,7 @@ class MY_TTS:
 
                 if result:
                     voice_tmp_path = result
-                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'cosyvoice_' + self.common.get_bj_time(4)), 'cosyvoice_' + self.common.get_bj_time(4))
+                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'cosyvoice_' + self.common.get_bj_time(7)), 'cosyvoice_' + self.common.get_bj_time(7))
 
                 return new_file_path
             elif data["type"] == "api_0819":
@@ -1363,7 +1560,7 @@ class MY_TTS:
 
                 if result:
                     voice_tmp_path = result[0]
-                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'f5_tts_' + self.common.get_bj_time(4)), 'f5_tts_' + self.common.get_bj_time(4))
+                    new_file_path = self.common.move_file(voice_tmp_path, os.path.join(self.audio_out_path, 'f5_tts_' + self.common.get_bj_time(7)), 'f5_tts_' + self.common.get_bj_time(7))
 
                 return new_file_path
             

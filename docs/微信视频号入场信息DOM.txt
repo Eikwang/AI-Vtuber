@@ -1,0 +1,20 @@
+**入场信息元素**
+入场信息版块
+<div data-v-2297997e="" data-v-19ebe5e5="" class="live-join-message-container"><div data-v-2297997e="" class="live-join-message"><span data-v-2297997e="" class="nickname"></span> 来了 </div></div>
+显示内容
+<div data-v-2297997e="" class="live-join-message"><span data-v-2297997e="" class="nickname"></span> 来了 </div>
+
+**当ID名"最初的你"进入直播间**
+<div data-v-2297997e="" class="live-join-message"><span data-v-2297997e="" class="nickname">最初的你</span> 来了 </div>
+
+**outerHTML**
+入场信息版块
+<div data-v-2297997e="" data-v-19ebe5e5="" class="live-join-message-container"><div data-v-2297997e="" class="live-join-message"><span data-v-2297997e="" class="nickname"></span> 来了 </div></div>
+显示内容
+<div data-v-2297997e="" class="live-join-message"><span data-v-2297997e="" class="nickname"></span> 来了 </div>
+
+**JS路径**
+入场信息版块
+document.querySelector("#container-wrap > div.container-center > div > wujie-app").shadowRoot.querySelector("#container-wrap > div.container-center > div > div > div > div.live-realtime-interactive-part > div:nth-child(3) > div > div > div.ant-tabs-content.ant-tabs-content-animated.ant-tabs-top-content > div.ant-tabs-tabpane.ant-tabs-tabpane-active > div.live-message-container > div.live-join-message-container")
+显示内容
+document.querySelector("#container-wrap > div.container-center > div > wujie-app").shadowRoot.querySelector("#container-wrap > div.container-center > div > div > div > div.live-realtime-interactive-part > div:nth-child(3) > div > div > div.ant-tabs-content.ant-tabs-content-animated.ant-tabs-top-content > div.ant-tabs-tabpane.ant-tabs-tabpane-active > div.live-message-container > div.live-join-message-container > div")

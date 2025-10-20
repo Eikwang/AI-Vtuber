@@ -1,0 +1,106 @@
+{
+    "server": {
+        "host": "localhost",
+        "port": 8765,
+        "debug": false
+    },
+    "browser": {
+        "headless_mode": false,
+        "max_pages": 5,
+        "gentle_optimization": true,
+        "single_process": false,
+        "disable_gpu": true,
+        "page_idle_timeout": 30,
+        "memory_check_interval": 60,
+        "retry_attempts": 2,
+        "context_lifetime": 300,
+        "memory_limit_mb": 3072,
+        "enable_aggressive_cleanup": true,
+        "enable_independent_contexts": false,
+        "cookie_persistence": true,
+        "auto_save_cookies": true,
+        "cookie_save_interval": 15,
+        "force_single_window": false,
+        "popup_blocking": true,
+        "restart_manager": {
+            "enabled": true,
+            "interval_hours": 0.1,
+            "memory_threshold_mb": 1500,
+            "max_restart_attempts": 3,
+            "restart_timeout_seconds": 300,
+            "enable_memory_monitoring": true,
+            "enable_performance_monitoring": true,
+            "auto_restart_on_memory_leak": true,
+            "preserve_monitoring_state": true,
+            "preserve_cookies": true,
+            "backup_interval_minutes": 30,
+            "cleanup_old_backups_days": 7,
+            "log_performance_metrics": true,
+            "notification_enabled": false,
+            "notification_webhook_url": "",
+            "web_interface": {
+                "enabled": false,
+                "host": "127.0.0.1",
+                "port": 8899
+            }
+        }
+    },
+    "live_companion": {
+        "enabled": true,
+        "uri": "ws://127.0.0.1:8878",
+        "auto_reconnect": true,
+        "reconnect_interval": 5,
+        "max_reconnect_attempts": 10,
+        "connection_timeout": 10
+    },
+    "api_forwarding": {
+        "enabled": false,
+        "host": "127.0.0.1",
+        "port": 8082,
+        "endpoint": "/api/danmaku/receive",
+        "timeout": 5,
+        "retry_count": 3,
+        "retry_delay": 1
+    },
+    "websocket_client": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 8756,
+        "path": "/danmaku",
+        "auto_reconnect": true,
+        "reconnect_interval": 5,
+        "max_reconnect_attempts": 10,
+        "connection_timeout": 10
+    },
+    "websocket": {
+        "enabled": true,
+        "broadcast_all_messages": true,
+        "max_clients": 20,
+        "message_queue_size": 100,
+        "enable_batching": true,
+        "heartbeat_interval": 30,
+        "connection_timeout": 60
+    },
+    "script_injection": {
+        "use_optimized_script": true,
+        "script_version": 4,
+        "enable_resource_manager": true,
+        "max_message_boxes": 5,
+        "cleanup_interval": 600,
+        "memory_check_interval": 300,
+        "timeout": 60,
+        "retry_count": 5
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "danmaku_listener.log",
+        "max_size": "5MB",
+        "backup_count": 2
+    },
+    "message_filter": {
+        "enabled": true,
+        "blocked_keywords_file": "blocked_keywords.txt",
+        "min_content_length": 1,
+        "max_content_length": 200
+    }
+}

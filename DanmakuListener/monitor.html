@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>直播监控管理 - Danmaku Listener</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/monitor.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <style>
+        /* Settings page styles */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px; box-sizing: border-box; }
+        .array-input { display: flex; align-items: center; margin-bottom: 5px; }
+        .array-input input { flex: 1; margin-right: 10px; }
+        .array-input button { padding: 5px 10px; font-size: 12px; }
+        .file-input-group { display: flex; align-items: center; }
+        .file-input-group input { flex: 1; margin-right: 10px; }
+        .section-title { color: #495057; font-size: 18px; margin-bottom: 10px; }
+        fieldset { border: 1px solid #dee2e6; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        legend { font-weight: bold; color: #495057; padding: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>直播监控管理系统</h1>
+        <nav class="nav-tabs">
+            <button class="tab-btn" data-tab="danmaku">弹幕显示</button>
+            <button class="tab-btn active" data-tab="monitor">监控管理</button>
+            <button class="tab-btn" data-tab="settings">设置</button>
+        </nav>
+    </div>
+
+    <!-- 弹幕显示标签页 -->
+    <div id="danmaku-tab" class="tab-content active">
+        <div class="container danmaku-main-container">
+            <div class="danmaku-col">
+                <h2>实时弹幕</h2>
+                <div id="danmaku-container"></div>
+            </div>
+            <div class="notification-col">
+                <h2>其他信息</h2>
+                <div id="notification-container"></div>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="section-header">
+                <h3>屏蔽关键词</h3>
+                <div class="header-actions">
+                    <label class="switch">
+                        <input type="checkbox" id="keyword-filter-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span class="switch-label">启用过滤</span>
+                </div>
+            </div>
+            <div id="blocked-keywords-container"></div>
+            <div class="input-group">
+                <input type="text" id="keyword-input" placeholder="输入要屏蔽的关键词">
+                <button id="add-keyword-btn">添加关键词</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 监控管理标签页 -->
+    <div id="monitor-tab" class="tab-content">
+        <div class="monitor-container">
+            <!-- 脚本配置区域 -->
+            <div class="section">
+                <div class="section-header collapsible-toggle" data-target="script-config-content">
+                    <h2>监听脚本配置</h2>
+                    <div class="header-buttons">
+                        <button id="scan-scripts-btn" class="btn btn-secondary">扫描脚本</button>
+                        <button id="add-script-btn" class="btn btn-primary">添加脚本</button>
+                        <span class="collapse-icon">▼</span>
+                    </div>
+                </div>
+                <div class="collapsible-content collapsed" id="script-config-content">
+                    <div class="script-config">
+                        <div class="current-script">
+                            <h3>当前脚本</h3>
+                            <div id="current-script-info" class="script-info">
+                                <span class="script-name">加载中...</span>
+                                <span class="script-path"></span>
+                            </div>
+                        </div>
+                        <div class="script-list">
+                            <h3>可用脚本</h3>
+                            <div id="script-list-container">
+                                <!-- 脚本列表将在这里动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- URL管理区域 -->
+            <div class="section">
+                <div class="section-header">
+                    <h2>直播间URL管理</h2>
+                    <div class="header-actions">
+                        <div class="client-listener-controls">
+                            <label class="switch">
+                                <input type="checkbox" id="client-listener-switch">
+                                <span class="slider"></span>
+                            </label>
+                            <button id="client-listener-btn" class="btn btn-secondary">客户端监听</button>
+                        </div>
+                        <button id="add-url-btn" class="btn btn-primary">添加直播间</button>
+                    </div>
+                </div>
+                <div class="url-management-content">
+                    <div class="url-list" id="url-list">
+                        <!-- URL列表将在这里动态生成 -->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- 设置标签页 -->
+    <div id="settings-tab" class="tab-content">
+        <div class="container">
+            <h2>系统设置</h2>
+            <form id="settings-form">
+                <!-- Settings will be loaded here -->
+            </form>
+            <button id="save-button" class="btn btn-primary">保存设置</button>
+        </div>
+    </div>
+
+
+
+    <!-- 添加URL模态框 -->
+    <div id="add-url-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加直播间URL</h3>
+                <span class="close" id="close-url-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="add-url-form">
+                    <div class="form-group">
+                        <label for="url-input">直播间URL:</label>
+                        <input type="url" id="url-input" required placeholder="https://live.bilibili.com/123456">
+                    </div>
+                    <div class="form-group">
+                        <label for="name-input">显示名称:</label>
+                        <input type="text" id="name-input" required placeholder="主播名称或房间名">
+                    </div>
+                    <div class="form-group">
+                        <label for="platform-select">平台:</label>
+                        <select id="platform-select" class="form-control" required>
+                            <option value="">请选择平台</option>
+                            <option value="douyu">斗鱼</option>
+                            <option value="huya">虎牙</option>
+                            <option value="pinduoduo">拼多多</option>
+                            <option value="1688">1688</option>
+                            <option value="taobao">淘宝</option>
+                            <option value="xiaohongshu">小红书</option>
+                            <option value="weixin">微信视频号</option>
+                            <option value="jinritemai">巨量百应</option>
+                            <option value="tiktok">TikTok</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="enabled-checkbox" checked>
+                            启用监控
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="cancel-url-btn" class="btn btn-secondary">取消</button>
+                        <button type="submit" class="btn btn-primary">添加</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加脚本模态框 -->
+    <div id="add-script-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加监听脚本</h3>
+                <span class="close" id="close-script-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="add-script-form">
+                    <div class="form-group">
+                        <label for="script-name-input">脚本名称:</label>
+                        <input type="text" id="script-name-input" required placeholder="脚本显示名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="script-filename-input">文件名:</label>
+                        <input type="text" id="script-filename-input" required placeholder="script.js">
+                    </div>
+                    <div class="form-group">
+                        <label for="script-path-input">脚本路径:</label>
+                        <input type="text" id="script-path-input" required placeholder="D:\\Scripts\\script.js">
+                        <small class="form-text">请输入脚本文件的完整路径</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="script-description-input">描述 (可选):</label>
+                        <textarea id="script-description-input" placeholder="脚本功能描述"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="cancel-script-btn" class="btn btn-secondary">取消</button>
+                        <button type="submit" class="btn btn-primary">添加</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="/static/script.js?v=20251009"></script>
+    <script src="/static/monitor.js?v=20251009"></script>
+    <script src="/static/settings.js?v=20251009"></script>
+</body>
+</html>

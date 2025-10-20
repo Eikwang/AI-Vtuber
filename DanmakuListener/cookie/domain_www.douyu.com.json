@@ -1,0 +1,53 @@
+{
+  "cookies": [
+    {
+      "name": "acf_did",
+      "value": "45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
+      "domain": ".douyu.com",
+      "path": "/",
+      "expires": 1762166704.023434,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "dy_did",
+      "value": "9876543210ABCDEF1234567890ABCDEF",
+      "domain": ".douyu.com",
+      "path": "/",
+      "expires": 1762166704.023434,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "wan_auth37wan",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTIzNDU2Nzg5MCIsImV4cCI6MTc0MTEzMjgwMH0.XXXXXXX-XXXXXXXXXXXXXXXXXXXX",
+      "domain": ".douyu.com",
+      "path": "/",
+      "expires": 1762166704.023434,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://www.douyu.com",
+      "localStorage": [
+        {
+          "name": "douyu_login_token",
+          "value": "abcdef1234567890fedcba0987654321"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "created_by": "cookie_fix_system",
+    "purpose": "斗鱼平台有效Cookie模板",
+    "is_valid": true,
+    "platform": "douyu",
+    "created_at": "2025-10-04T18:45:04Z",
+    "expires_at": "2025-10-04T23:59:59Z"
+  }
+}

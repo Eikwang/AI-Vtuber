@@ -31,6 +31,21 @@ class CallbackMessage(BaseModel):
     type: str
     data: Dict[str, Any]
 
+# 弹幕管理相关模型
+class DanmakuConnectionConfig(BaseModel):
+    platform: str
+    room_id: str
+    
+class DanmakuManageMessage(BaseModel):
+    action: str  # add, start, stop, delete
+    connections: List[DanmakuConnectionConfig]
+
+class DanmakuConnectionStatus(BaseModel):
+    platform: str
+    room_id: str
+    status: str  # running, stopped, error
+    error_message: Optional[str] = None
+
 """
 通用
 """ 

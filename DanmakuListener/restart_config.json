@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "interval_hours": 6.0,
+  "memory_threshold_mb": 2048,
+  "max_restart_attempts": 3,
+  "restart_timeout_seconds": 300,
+  "enable_memory_monitoring": true,
+  "enable_performance_monitoring": true,
+  "auto_restart_on_memory_leak": true,
+  "preserve_monitoring_state": true,
+  "preserve_cookies": true,
+  "backup_interval_minutes": 30,
+  "cleanup_old_backups_days": 7,
+  "log_performance_metrics": true,
+  "notification_enabled": false,
+  "notification_webhook_url": null,
+  "last_updated": "2025-10-09T09:26:43.689008"
+}
