@@ -190,7 +190,7 @@ def start_server():
         "RoomId": 0,
     }
     # 最新入场的用户名列表
-    my_global.last_username_list = [""]
+    my_global.last_username_list = ["家人们"]
 
     try:
         my_handle = My_handle(config_path)

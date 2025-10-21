@@ -5453,6 +5453,7 @@ class My_handle(metaclass=SingletonMeta):
                 # 清空数据
                 self.last_data[timer_flag] = []
 
+
     def _analyze_queue_pressure_with_priority(self, new_data, current_queue_length):
         """智能分析队列压力，考虑优先级分布
         
@@ -5463,15 +5464,18 @@ class My_handle(metaclass=SingletonMeta):
         Returns:
             dict: 包含压力分析结果的字典
         """
+
         try:
+
+            # 使用配置的动态阈值，支持场景自适应
+            low_load_threshold = My_handle.config.get("filter", "queue_low_load_threshold", 2)
+            medium_load_threshold = My_handle.config.get("filter", "queue_medium_load_threshold", 4)
+
             # 获取新消息的优先级
             priority_mapping = My_handle.config.get("filter", "priority_mapping", {})
             new_msg_type = new_data.get("type", "comment")
             new_msg_priority = int(priority_mapping.get(new_msg_type, 0))
-            
-            # 使用配置的动态阈值，支持场景自适应
-            low_load_threshold = My_handle.config.get("filter", "queue_low_load_threshold", 2)
-            medium_load_threshold = My_handle.config.get("filter", "queue_medium_load_threshold", 4)
+        
             
             # **修复：正确的三层压力处理逻辑**
             pressure_analysis = {
@@ -5521,7 +5525,7 @@ class My_handle(metaclass=SingletonMeta):
         except Exception as e:
             logger.error(f"队列压力分析异常: {e}")
             # 异常情况下回退到简单的队列长度判断
-            if current_queue_length <= 5:
+            if current_queue_length <= 4:
                 return {
                     "should_process": True,
                     "should_store_cyclically": False,
@@ -5550,6 +5554,7 @@ class My_handle(metaclass=SingletonMeta):
             bool: 队列中是否存在更低优先级的消息
         """
         try:
+            medium_load_threshold = My_handle.config.get("filter", "queue_medium_load_threshold", 4)
             if not hasattr(My_handle.audio, 'message_queue'):
                 return False
             
@@ -5560,11 +5565,11 @@ class My_handle(metaclass=SingletonMeta):
             if queue_length == 0:
                 return False
             
-            # 如果当前消息是高优先级(>=7)，很可能队列中有更低优先级的
+            # 如果当前消息是高优先级，很可能队列中有更低优先级的
             if current_priority >= 50:
                 return True
-            # 如果当前消息是中优先级(5-6)，队列较长时可能有低优先级的
-            elif current_priority >= 40 and queue_length >= 4:
+            # 如果当前消息是中优先级，队列较长时可能有低优先级的
+            elif current_priority >= 40 and queue_length >= medium_load_threshold:
                 return True
             # 如果当前消息是低优先级(<5)，不太可能插队
             else:

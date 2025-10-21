@@ -14,14 +14,14 @@
       "memory_usage": 0.0
     },
     "7eafa768-6ef0-4a63-acec-d8ea69245f10": {
-      "status": "stopped",
+      "status": "running",
       "browser_tab_id": null,
       "start_time": "2025-10-05T19:50:24.169812",
-      "last_heartbeat": "2025-10-17T14:58:00.246907",
+      "last_heartbeat": "2025-10-21T10:57:02.351074",
       "error_message": null,
       "reconnect_count": 0,
       "message_count": 0,
-      "error_count": 2912,
+      "error_count": 2938,
       "cpu_usage": 0.0,
       "memory_usage": 0.0
     },

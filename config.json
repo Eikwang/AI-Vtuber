@@ -174,8 +174,8 @@
       "entrance": 30
     },
     "message_queue_max_len": 20,
-    "queue_low_load_threshold": 1,
-    "queue_medium_load_threshold": 3,
+    "queue_low_load_threshold": 3,
+    "queue_medium_load_threshold": 12,
     "voice_tmp_path_queue_max_len": 10,
     "voice_tmp_path_queue_min_start_play": 0,
     "priority_mapping": {
@@ -1861,6 +1861,7 @@
       "gift",
       "entrance",
       "follow",
+      "idle_time_task",
       "reread_top_priority",
       "schedule",
       "integral"

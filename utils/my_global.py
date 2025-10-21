@@ -1,6 +1,6 @@
 # 空闲时间计数器
 global_idle_time = 0
-last_username_list = [""]
+last_username_list = ["家人们"]
 last_liveroom_data = None
 
 # 待播放音频数量（在使用 音频播放器 或者 metahuman-stream等不通过AI Vtuber播放音频的对接项目时，使用此变量记录是是否还有音频没有播放完）
@@ -35,12 +35,15 @@ def add_username_to_last_username_list(data):
     """
     global last_username_list
     
-    # 如果列表未初始化，初始化为空列表
+    # 如果列表未初始化或为空，初始化为默认值“家人们”
     if last_username_list is None:
-        last_username_list = []
+        last_username_list = ["家人们"]
+
+    # 数据为空时使用默认值“家人们”
+    username = (data or "").strip() or "家人们"
 
     # 添加数据到 最新入场的用户名列表
-    last_username_list.append(data)
+    last_username_list.append(username)
 
-    # 保留最新的3个数据
-    last_username_list = last_username_list[-3:]
+    # 保留最新的1个数据
+    last_username_list = last_username_list[-1:]
