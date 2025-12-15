@@ -67,6 +67,16 @@ class Audio:
         
         self.common = Common()
         self.my_tts = MY_TTS(config_path)
+        self.playing_files = set()
+        self.queued_files = set()
+        try:
+            out_dir = self.my_tts.audio_out_path
+            if not os.path.isabs(out_dir):
+                if not out_dir.startswith('./'):
+                    out_dir = './' + out_dir
+            self.audio_out_dir = os.path.abspath(out_dir)
+        except Exception:
+            self.audio_out_dir = os.path.abspath('./out')
         
         # 设置单例实例
         Audio.instance = self
@@ -103,6 +113,24 @@ class Audio:
         self._start_audio_threads()
         
         logger.info("音频处理系统初始化完成")
+
+    def _get_auto_cleanup_settings(self):
+        try:
+            enable = bool(self.config.get("play_audio", "auto_cleanup_enable", False))
+            ttl = self.config.get("play_audio", "auto_cleanup_ttl_sec", 1800)
+            interval = self.config.get("play_audio", "auto_cleanup_interval_sec", 60)
+            cleanup_on_end = bool(self.config.get("play_audio", "cleanup_on_play_end", False))
+            try:
+                ttl = float(ttl)
+            except Exception:
+                ttl = 1800.0
+            try:
+                interval = float(interval)
+            except Exception:
+                interval = 60.0
+            return enable, ttl, interval, cleanup_on_end
+        except Exception:
+            return True, 1800.0, 60.0, True
     
     def is_queue_less_or_greater_than(self, queue_type, less=None, greater=None):
         """检查指定队列的长度是否小于或大于给定值"""
@@ -271,6 +299,11 @@ class Audio:
         self.copywriting_audio_queue_lock = threading.Lock()
         self.copywriting_audio_queue_not_empty = threading.Condition(lock=self.copywriting_audio_queue_lock)
         
+        # metahuman_stream消息队列
+        self.metahuman_stream_queue = queue.Queue(maxsize=message_queue_max_len)
+        self.metahuman_stream_queue_lock = threading.Lock()
+        self.metahuman_stream_queue_not_empty = threading.Condition(lock=self.metahuman_stream_queue_lock)
+        
         # 保持兼容性的旧队列（逐步迁移）- 改为list以支持len()和insert()操作
         self.voice_tmp_path_queue = []
         self.voice_tmp_path_queue_max_len = voice_tmp_path_queue_max_len
@@ -297,7 +330,7 @@ class Audio:
             },
             'assistant': {
                 'next_delay_ms': 0,  # 下一条消息的延时时间(毫秒)
-                'char_delay_rate': 120,
+                'char_delay_rate': 200,
                 'last_processed_time': 0  # 上次处理完成的时间戳
             }
         }
@@ -357,6 +390,13 @@ class Audio:
             name="AssistantAudioThread"
         ).start()
         
+        # metahuman_stream发送线程
+        threading.Thread(
+            target=lambda: asyncio.run(self.metahuman_stream_send_thread()),
+            daemon=True,
+            name="MetahumanStreamThread"
+        ).start()
+        
         # 文案音频播放线程
         threading.Thread(
             target=lambda: asyncio.run(self.copywriting_audio_playback_thread()),
@@ -369,6 +409,11 @@ class Audio:
             target=lambda: asyncio.run(self.legacy_audio_playback_thread()),
             daemon=True,
             name="LegacyAudioThread"
+        ).start()
+        threading.Thread(
+            target=lambda: asyncio.run(self.cleanup_background_thread()),
+            daemon=True,
+            name="AudioCleanupThread"
         ).start()
         
         logger.info("音频处理线程启动完成")
@@ -390,14 +435,33 @@ class Audio:
                 # 日志中同时显示内部优先级与配置优先级（内部为负数，配置为其相反数）
                 logger.debug(f"处理消息: {message.get('type', 'unknown')}, 优先级(内部): {priority}, 优先级(配置): {-priority}")
                 
-                # 在处理该消息前，仅对其所属流程应用动态延时（实现分流）
+                if self._should_use_metahuman_stream(message):
+                    try:
+                        with self.metahuman_stream_queue_lock:
+                            try:
+                                self.metahuman_stream_queue.put_nowait(message)
+                                self.metahuman_stream_queue_not_empty.notify()
+                            except queue.Full:
+                                try:
+                                    self.metahuman_stream_queue.get_nowait()
+                                    logger.warning("metahuman_stream队列已满，丢弃最旧消息")
+                                except queue.Empty:
+                                    pass
+                                try:
+                                    self.metahuman_stream_queue.put_nowait(message)
+                                    self.metahuman_stream_queue_not_empty.notify()
+                                except queue.Full:
+                                    logger.warning("metahuman_stream队列仍满，丢弃新消息")
+                    finally:
+                        self.message_queue.task_done()
+                    continue
+
                 try:
                     flow_type_for_message = "assistant" if self._is_assistant_anchor_message(message) else "global"
                     await self._apply_flow_specific_delay(flow_type_for_message)
                 except Exception as _e:
                     logger.error(f"应用流程延时失败: {_e}")
                 
-                # 处理消息
                 await self._process_message(message)
                 
                 # 根据当前消息内容为下一条消息计算延时
@@ -506,7 +570,7 @@ class Audio:
                 if remaining_delay > 0:
                     delay_seconds = remaining_delay / 1000.0
                     human_flow = "助播流程" if flow_type == "assistant" else "全局流程"
-                    # logger.info(f"{human_flow}延时: {remaining_delay:.0f}ms")
+                    logger.info(f"{human_flow}延时: {remaining_delay:.0f}ms")
                     await asyncio.sleep(delay_seconds)
 
                 # 重置仅该流程的延时
@@ -845,6 +909,14 @@ class Audio:
                 # 获取音频数据
                 try:
                     audio_data = self.global_audio_queue.get(timeout=1.0)
+                    try:
+                        fp = None
+                        if isinstance(audio_data, dict):
+                            fp = audio_data.get("file_path") or audio_data.get("audio_path")
+                        if fp:
+                            self._unregister_queued_file(fp)
+                    except Exception:
+                        pass
                 except queue.Empty:
                     continue
                 
@@ -875,6 +947,14 @@ class Audio:
                 # 获取音频数据
                 try:
                     audio_data = self.assistant_audio_queue.get(timeout=1.0)
+                    try:
+                        fp = None
+                        if isinstance(audio_data, dict):
+                            fp = audio_data.get("file_path") or audio_data.get("audio_path")
+                        if fp:
+                            self._unregister_queued_file(fp)
+                    except Exception:
+                        pass
                 except queue.Empty:
                     continue
                 
@@ -894,8 +974,32 @@ class Audio:
                 logger.error(f"助播音频播放线程出错: {e}")
                 logger.error(traceback.format_exc())
     
+    async def metahuman_stream_send_thread(self):
+        logger.info("metahuman_stream发送线程启动")
+        while not Audio.should_shutdown:
+            try:
+                with self.metahuman_stream_queue_lock:
+                    while self.metahuman_stream_queue.empty() and not Audio.should_shutdown:
+                        self.metahuman_stream_queue_not_empty.wait(timeout=1.0)
+                if Audio.should_shutdown:
+                    break
+                try:
+                    message = self.metahuman_stream_queue.get(timeout=1.0)
+                except queue.Empty:
+                    continue
+                
+                await self._send_to_metahuman_stream(message)
+                flow_type, delay_ms = self._calculate_next_delay(message)
+                if flow_type and delay_ms > 0:
+                    current_time = time.time() * 1000
+                    self.delay_tracking[flow_type]['next_delay_ms'] = delay_ms
+                    self.delay_tracking[flow_type]['last_processed_time'] = current_time
+                self.metahuman_stream_queue.task_done()
+            except Exception as e:
+                logger.error(f"metahuman_stream发送线程出错: {e}")
+                logger.error(traceback.format_exc())
+
     async def copywriting_audio_playback_thread(self):
-        """文案音频播放线程"""
         logger.info("文案音频播放线程启动")
         
         while not Audio.should_shutdown:
@@ -911,6 +1015,14 @@ class Audio:
                 # 获取音频数据
                 try:
                     audio_data = self.copywriting_audio_queue.get(timeout=1.0)
+                    try:
+                        fp = None
+                        if isinstance(audio_data, dict):
+                            fp = audio_data.get("file_path") or audio_data.get("audio_path")
+                        if fp:
+                            self._unregister_queued_file(fp)
+                    except Exception:
+                        pass
                 except queue.Empty:
                     continue
                 
@@ -1138,6 +1250,12 @@ class Audio:
                         pass
                 
                 self.global_audio_queue.put(normalized_data, timeout=1.0)
+                try:
+                    fp = normalized_data.get("file_path") or normalized_data.get("audio_path")
+                    if fp:
+                        self._register_queued_file(fp)
+                except Exception:
+                    pass
                 self.global_audio_queue_not_empty.notify()
             logger.debug(f"音频已添加到全局队列: {normalized_data.get('file_path', 'unknown')}")
         except queue.Full:
@@ -1176,6 +1294,12 @@ class Audio:
                         pass
                 
                 self.assistant_audio_queue.put(normalized_data, timeout=1.0)
+                try:
+                    fp = normalized_data.get("file_path") or normalized_data.get("audio_path")
+                    if fp:
+                        self._register_queued_file(fp)
+                except Exception:
+                    pass
                 self.assistant_audio_queue_not_empty.notify()
             logger.debug(f"音频已添加到助播队列: {normalized_data.get('file_path', 'unknown')}")
         except queue.Full:
@@ -1214,29 +1338,79 @@ class Audio:
                         pass
                 
                 self.copywriting_audio_queue.put(normalized_data, timeout=1.0)
+                try:
+                    fp = normalized_data.get("file_path") or normalized_data.get("audio_path")
+                    if fp:
+                        self._register_queued_file(fp)
+                except Exception:
+                    pass
                 self.copywriting_audio_queue_not_empty.notify()
             logger.debug(f"音频已添加到文案队列: {normalized_data.get('file_path', 'unknown')}")
         except queue.Full:
             logger.error("文案音频队列已满，无法添加新音频")
         except Exception as e:
             logger.error(f"添加音频到文案队列失败: {e}")
-    
-    def _cleanup_audio_file(self, file_path):
-        """清理音频文件
-        
-        Args:
-            file_path: 音频文件路径
-        """
-        if not file_path or not isinstance(file_path, str):
-            return
-            
+
+    def _register_queued_file(self, file_path: str):
         try:
-            import os
-            if os.path.exists(file_path):
-                os.remove(file_path)
-                logger.debug(f"已清理音频文件: {file_path}")
-        except Exception as e:
-            logger.warning(f"清理音频文件失败 {file_path}: {e}")
+            if file_path:
+                self.queued_files.add(file_path)
+        except Exception:
+            pass
+
+    def _unregister_queued_file(self, file_path: str):
+        try:
+            if file_path:
+                self.queued_files.discard(file_path)
+        except Exception:
+            pass
+
+    def _mark_playing(self, file_path: str):
+        try:
+            if file_path:
+                self.playing_files.add(file_path)
+        except Exception:
+            pass
+
+    def _unmark_playing(self, file_path: str):
+        try:
+            if file_path:
+                self.playing_files.discard(file_path)
+        except Exception:
+            pass
+
+    async def cleanup_background_thread(self):
+        while not Audio.should_shutdown:
+            try:
+                enable, ttl, interval, _ = self._get_auto_cleanup_settings()
+                if enable:
+                    self._cleanup_expired_files(ttl)
+                await asyncio.sleep(interval)
+            except Exception:
+                await asyncio.sleep(60.0)
+
+    def _cleanup_expired_files(self, ttl_sec: float):
+        try:
+            now = time.time()
+            if not os.path.isdir(self.audio_out_dir):
+                return
+            for name in os.listdir(self.audio_out_dir):
+                path = os.path.join(self.audio_out_dir, name)
+                try:
+                    if not os.path.isfile(path):
+                        continue
+                    ext = os.path.splitext(path)[1].lower()
+                    if ext not in (".wav", ".mp3", ".ogg", ".flac"):
+                        continue
+                    if path in self.playing_files or path in self.queued_files:
+                        continue
+                    mtime = os.path.getmtime(path)
+                    if now - mtime >= ttl_sec:
+                        self._cleanup_audio_file(path)
+                except Exception:
+                    continue
+        except Exception:
+            pass
     
     def _normalize_audio_data(self, audio_data):
         """标准化音频数据格式
@@ -1371,11 +1545,10 @@ class Audio:
         assistant_config = self.config.get("assistant_anchor", {})
         tts_type = assistant_config.get("audio_synthesis_type", "edge-tts")
         
-        # 使用助播TTS类型对应的配置路径执行合成
         audio_data = await self._synthesize_audio_with_config(
             message,
-            tts_type,
-            ["audio_synthesis", tts_type]
+            "assistant",
+            ["gpt_sovits" if tts_type == "gpt_sovits" else tts_type]
         )
         
         # 标记为助播来源，满足 _should_forward_to_dh_live 判断
@@ -1724,6 +1897,10 @@ class Audio:
                 logger.debug(f"{audio_type}音频内容: {text[:50]}...")
             
             if mixer:
+                try:
+                    self._mark_playing(audio_path)
+                except Exception:
+                    pass
                 mixer.music.load(audio_path)
                 mixer.music.play()
                 
@@ -1735,6 +1912,17 @@ class Audio:
                     if audio_type == "文案" and Audio.copywriting_play_flag == 0:
                         break
                     await asyncio.sleep(0.1)
+                try:
+                    self._unmark_playing(audio_path)
+                except Exception:
+                    pass
+                try:
+                    enable, ttl, interval, cleanup_on_end = self._get_auto_cleanup_settings()
+                    if cleanup_on_end:
+                        if not (audio_type == "文案" and Audio.copywriting_play_flag == 2):
+                            self._cleanup_audio_file(audio_path)
+                except Exception:
+                    pass
             else:
                 logger.error(f"{audio_type}mixer未初始化")
         except Exception as e:

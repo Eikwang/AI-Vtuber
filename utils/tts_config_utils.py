@@ -49,6 +49,8 @@ class TTSConfigUtils:
             if not isinstance(tts_config, dict):
                 logger.warning(f"全局TTS配置无效: {tts_type}，使用空配置")
                 tts_config = {}
+            if tts_type == "gpt_sovits" and "type" not in tts_config:
+                tts_config = cls._infer_gpt_sovits_type(tts_config)
             
             logger.debug(f"获取全局TTS配置: {tts_type}")
             return tts_type, deepcopy(tts_config)
@@ -133,6 +135,8 @@ class TTSConfigUtils:
             tts_config = audio_synthesis_config.get(tts_type, {})
             if not isinstance(tts_config, dict):
                 tts_config = {}
+            if tts_type == "gpt_sovits" and "type" not in tts_config:
+                tts_config = cls._infer_gpt_sovits_type(tts_config)
             
             logger.debug(f"获取文案TTS配置: {tts_type}")
             return tts_type, deepcopy(tts_config)

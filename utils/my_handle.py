@@ -5490,9 +5490,16 @@ class My_handle(metaclass=SingletonMeta):
             pressure_level = ""
             
             if current_queue_length < low_load_threshold:
-                # 第一层：低压力 - 弹幕信息直接进入处理流程，并根据优先级插队
-                should_process = True
-                pressure_level = "低压力"
+                # 第一层：低压力 - 但仍需要考虑消息优先级
+                # 低优先级消息(<5)即使在低压力下也应周期储存，避免队列污染
+                if new_msg_priority < 5:
+                    should_process = False
+                    should_store_cyclically = True
+                    pressure_level = "低压力-低优先级储存"
+                else:
+                    # 中高优先级消息在低压力时直接处理
+                    should_process = True
+                    pressure_level = "低压力-高优先级处理"
             elif current_queue_length <= medium_load_threshold:
                 # 第二层：中压力 - 判断队列优先级决定是否处理或周期性储存
                 # 这里需要检查队列中是否有比当前消息优先级更低的消息

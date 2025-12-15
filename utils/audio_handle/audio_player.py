@@ -18,7 +18,7 @@ class AUDIO_PLAYER:
             url = f"{self.api_ip_port}/play"
 
             headers = {"Content-Type": "application/json"}
-            response = requests.post(url, json=data, headers=headers)
+            response = requests.post(url, json=data, headers=headers, timeout=30)
 
             if response.status_code == 200:
                 data_json = response.json()
@@ -38,7 +38,7 @@ class AUDIO_PLAYER:
     def pause_stream(self):
         try:
             url = f"{self.api_ip_port}/pause_stream"
-            response = requests.get(url)
+            response = requests.get(url, timeout=10)
 
             if response.status_code == 200:
                 data = response.json()
@@ -57,7 +57,7 @@ class AUDIO_PLAYER:
     def resume_stream(self):
         try:
             url = f"{self.api_ip_port}/resume_stream"
-            response = requests.get(url)
+            response = requests.get(url, timeout=10)
 
             if response.status_code == 200:
                 data = response.json()
@@ -79,7 +79,7 @@ class AUDIO_PLAYER:
         """
         try:
             url = f"{self.api_ip_port}/skip_current_stream"
-            response = requests.get(url)
+            response = requests.get(url, timeout=10)
 
             if response.status_code == 200:
                 data = response.json()
@@ -101,7 +101,7 @@ class AUDIO_PLAYER:
         """
         try:
             url = f"{self.api_ip_port}/get_list"
-            response = requests.get(url)
+            response = requests.get(url, timeout=10)
 
             if response.status_code == 200:
                 data = response.json()

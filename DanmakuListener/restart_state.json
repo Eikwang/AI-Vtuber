@@ -1,10 +1,10 @@
 {
-  "timestamp": "2025-10-21T10:56:39.549611",
-  "restart_count": 2,
+  "timestamp": "2025-12-11T08:28:10.620288",
+  "restart_count": 66,
   "states": [
     {
-      "url_id": "7eafa768-6ef0-4a63-acec-d8ea69245f10",
-      "url": "https://www.douyu.com/beta/338281?dyshid=12249dd2-45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
+      "url_id": "be042e69-c4b3-4115-8e92-10e12d4a8d1c",
+      "url": "https://www.douyu.com/beta/1126960?dyshid=12249dd2-45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
       "script_name": "通用平台.js",
       "cookies_data": [
         {
@@ -12,7 +12,7 @@
           "value": "YcqJxeNfg6hykiA8QhuVOqRzSK1r9u9BoquYm1d%2B3xg%3D%2833fa55572d0e7cae7672165c32150098c4cb7b54%29",
           "domain": "abvolcapi.douyucdn.cn",
           "path": "/service/2/abtest_config",
-          "expires": 1761101201.042984,
+          "expires": 1765498698.495638,
           "httpOnly": true,
           "secure": true,
           "sameSite": "None"
@@ -49,20 +49,10 @@
         },
         {
           "name": "_TDID_CK",
-          "value": "1761015399243",
+          "value": "1761015309243",
           "domain": "www.douyu.com",
           "path": "/beta",
           "expires": -1,
-          "httpOnly": false,
-          "secure": false,
-          "sameSite": "Lax"
-        },
-        {
-          "name": "acf_did",
-          "value": "45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
-          "domain": ".douyu.com",
-          "path": "/",
-          "expires": 1762166704.032994,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -82,37 +72,7 @@
           "value": "7557341775921175054",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1779158801.045683,
-          "httpOnly": false,
-          "secure": false,
-          "sameSite": "Lax"
-        },
-        {
-          "name": "acf_ab_pmt",
-          "value": "20100212%23webnewhome%23B%2C20100249%23webTagRank%23B%2C20100248%23webTagHover%23B%2C20100254%23WebTool0703%23new%2C1854%23newWebLive%23B%2C20100272%23all_lists_sort%23c",
-          "domain": "www.douyu.com",
-          "path": "/",
-          "expires": 1779158801.045967,
-          "httpOnly": false,
-          "secure": false,
-          "sameSite": "Lax"
-        },
-        {
-          "name": "acf_ab_ver_all",
-          "value": "20100212%2C20100249%2C20100248%2C20100254%2C1854%2C20100272",
-          "domain": "www.douyu.com",
-          "path": "/",
-          "expires": 1779158801.046225,
-          "httpOnly": false,
-          "secure": false,
-          "sameSite": "Lax"
-        },
-        {
-          "name": "acf_ab_vs",
-          "value": "webnewhome%3DB%2CwebTagRank%3DB%2CwebTagHover%3DB%2CWebTool0703%3Dnew%2CnewWebLive%3DB%2Call_lists_sort%3Dc",
-          "domain": "www.douyu.com",
-          "path": "/",
-          "expires": 1779158801.046612,
+          "expires": 1783556298.535929,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -122,7 +82,7 @@
           "value": "45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
           "domain": ".douyu.com",
           "path": "/",
-          "expires": 1795574802.900311,
+          "expires": 1799972298.529256,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -132,7 +92,7 @@
           "value": "45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1795574802.90044,
+          "expires": 1799972298.529337,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -142,7 +102,7 @@
           "value": "45A6C7D9E2F1B0A3F4E5D6C7B8A9F0E1",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1795574806.625693,
+          "expires": 1799972302.742058,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -156,16 +116,6 @@
           "httpOnly": false,
           "secure": true,
           "sameSite": "None"
-        },
-        {
-          "name": "Hm_lvt_e99aee90ec1b2106afe7ec3b199020a7",
-          "value": "1759580754",
-          "domain": ".douyu.com",
-          "path": "/",
-          "expires": 1792550802,
-          "httpOnly": false,
-          "secure": false,
-          "sameSite": "Lax"
         },
         {
           "name": "HMACCOUNT",
@@ -182,7 +132,7 @@
           "value": "GA1.1.1350926156.1759580755",
           "domain": ".douyu.com",
           "path": "/",
-          "expires": 1795574803.522458,
+          "expires": 1799972299.476887,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -208,41 +158,11 @@
           "sameSite": "Lax"
         },
         {
-          "name": "last_login_way",
-          "value": "wx",
-          "domain": "passport.douyu.com",
-          "path": "/",
-          "expires": 1762234777.925697,
-          "httpOnly": false,
-          "secure": false,
-          "sameSite": "Lax"
-        },
-        {
-          "name": "LTP0",
-          "value": "9eb9ebmBRz0G2k10q3jtoozxrD6EHnloNzrCtw9XesFVZ%2FyqItASxrPS%2FoKJ1hB5Na4NwZZstA5tw6gjixmJRQ2X2GiB2qccLJGxKa1EjVBpuifOU4Om%2F2HB2NDtrScQJVxqn2cDLP0eJXYP7WbBPMKDxu%2FM2rsuogXAclU7LOwajmwOV4b0TBucec33LzuiIDs1aBrA",
-          "domain": "passport.douyu.com",
-          "path": "/",
-          "expires": 1775410777.925731,
-          "httpOnly": true,
-          "secure": false,
-          "sameSite": "Lax"
-        },
-        {
-          "name": "acf_avatar",
-          "value": "https%3A%2F%2Fapic.douyucdn.cn%2Fupload%2Favatar_v3%2F201906%2F2a9f2266e5db4d7888d02de252bdc0f0_",
-          "domain": "www.douyu.com",
-          "path": "/",
-          "expires": -1,
-          "httpOnly": false,
-          "secure": false,
-          "sameSite": "Lax"
-        },
-        {
           "name": "acf_ssid",
           "value": "1729707712390787889",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1779158801.045418,
+          "expires": 1783556298.535642,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -252,7 +172,7 @@
           "value": "%7B%22uid%22%3A%22304389586%22%2C%22status%22%3A0%2C%22birthday%22%3A%22%22%2C%22password%22%3A%22%22%7D",
           "domain": ".douyu.com",
           "path": "/",
-          "expires": 1795574803.989138,
+          "expires": 1799972299.606076,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -276,26 +196,6 @@
           "httpOnly": true,
           "secure": true,
           "sameSite": "Lax"
-        },
-        {
-          "name": "t",
-          "value": "6251e248bf7c422d9b68729fb04ca34b",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529748,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "_tb_token_",
-          "value": "eeeebe6e9837e",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.530043,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
         },
         {
           "name": "thw",
@@ -338,16 +238,6 @@
           "sameSite": "None"
         },
         {
-          "name": "cookie2",
-          "value": "1ab38559681774072cac0c2ea5b761cf",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529821,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
           "name": "arms_uid",
           "value": "7fae757c-90ff-4c68-8dbe-d34047098e05",
           "domain": "login.taobao.com",
@@ -363,56 +253,6 @@
           "domain": ".tmall.com",
           "path": "/",
           "expires": 1794208368.495725,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "wk_cookie2",
-          "value": "17e97e73db0b180d8950d664ab78262f",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1765304477.435765,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "wk_unb",
-          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1765304477.435805,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "lgc",
-          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529712,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "cancelledSubSites",
-          "value": "empty",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.52973,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "dnk",
-          "value": "%5Cu7231%5Cu662F%5Cu5E0C%5Cu671B%5Cu7684%5Cu660E%5Cu706F",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529786,
           "httpOnly": false,
           "secure": true,
           "sameSite": "None"
@@ -518,16 +358,6 @@
           "sameSite": "None"
         },
         {
-          "name": "wk_cookie2",
-          "value": "17e97e73db0b180d8950d664ab78262f",
-          "domain": ".tmall.com",
-          "path": "/",
-          "expires": 1763148512.686683,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
           "name": "cookie17",
           "value": "UUphzOSEjD3QCxjwBA%3D%3D",
           "domain": ".tmall.com",
@@ -604,16 +434,6 @@
           "path": "/",
           "expires": -1,
           "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "wk_unb",
-          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
-          "domain": ".tmall.com",
-          "path": "/",
-          "expires": 1763148512.686751,
-          "httpOnly": true,
           "secure": true,
           "sameSite": "None"
         },
@@ -698,16 +518,6 @@
           "sameSite": "None"
         },
         {
-          "name": "wk_cookie2",
-          "value": "17e97e73db0b180d8950d664ab78262f",
-          "domain": ".fliggy.com",
-          "path": "/",
-          "expires": 1763148512.728359,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
           "name": "cookie17",
           "value": "UUphzOSEjD3QCxjwBA%3D%3D",
           "domain": ".fliggy.com",
@@ -784,16 +594,6 @@
           "path": "/",
           "expires": -1,
           "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "wk_unb",
-          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
-          "domain": ".fliggy.com",
-          "path": "/",
-          "expires": 1763148512.72843,
-          "httpOnly": true,
           "secure": true,
           "sameSite": "None"
         },
@@ -878,16 +678,6 @@
           "sameSite": "None"
         },
         {
-          "name": "wk_cookie2",
-          "value": "17e97e73db0b180d8950d664ab78262f",
-          "domain": ".tmall.hk",
-          "path": "/",
-          "expires": 1763148512.749558,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
           "name": "cookie17",
           "value": "UUphzOSEjD3QCxjwBA%3D%3D",
           "domain": ".tmall.hk",
@@ -968,16 +758,6 @@
           "sameSite": "None"
         },
         {
-          "name": "wk_unb",
-          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
-          "domain": ".tmall.hk",
-          "path": "/",
-          "expires": 1763148512.749625,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
           "name": "cnaui",
           "value": "2206656316741",
           "domain": ".mmstat.com",
@@ -1033,146 +813,6 @@
           "domain": ".taobao.com",
           "path": "/",
           "expires": 1791656477.435814,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "unb",
-          "value": "2206656316741",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529535,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "csg",
-          "value": "7059a264",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529665,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "cookie17",
-          "value": "UUphzOSEjD3QCxjwBA%3D%3D",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529767,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "skt",
-          "value": "19bb66957f7614b9",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529803,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "lc",
-          "value": "V3oTUmDaSm8VMGGxEcwM",
-          "domain": ".login.taobao.com",
-          "path": "/",
-          "expires": 1762683679.529915,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "_l_g_",
-          "value": "Ug%3D%3D",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529976,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "sg",
-          "value": "%E5%A9%8610",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529992,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "_nk_",
-          "value": "%5Cu8BD7%5Cu5A77%5Cu6211%5Cu8001%5Cu5A46",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.530009,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "cookie1",
-          "value": "BYS5m6HAijHhlqmHQ2YQTpkrjfWVAlNwk1Sw2RZMhKI%3D",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.530025,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "uc1",
-          "value": "pas=0&cookie14=UoYY4%2FvofBAumQ%3D%3D&cookie16=UIHiLt3xCS3yM2h4eKHS9lpEOw%3D%3D&cookie15=UtASsssmOIJ0bQ%3D%3D&existShop=false&cookie21=UIHiLt3xThN%2B",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529601,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "sn",
-          "value": "",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529627,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "uc3",
-          "value": "id2=UUphzOSEjD3QCxjwBA%3D%3D&vt3=F8dD2k0%2FH0G41W6y0gI%3D&lg2=VT5L2FSpMGV7TQ%3D%3D&nk2=qTnm4dUid4mFBQ%3D%3D",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529645,
-          "httpOnly": true,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "existShop",
-          "value": "MTc2MDA5MTY3OQ%3D%3D",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529839,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "uc4",
-          "value": "id4=0%40U2grF89D4F8La%2BfwZv90xvS4HxBQYQlQ&nk4=0%40q3y4ui2FspYcR9Ta8UiBUWM6dA%2Ft",
-          "domain": ".taobao.com",
-          "path": "/",
-          "expires": 1762683679.529856,
           "httpOnly": true,
           "secure": true,
           "sameSite": "None"
@@ -1253,16 +893,6 @@
           "domain": ".tmall.com",
           "path": "/",
           "expires": 1775643649,
-          "httpOnly": false,
-          "secure": true,
-          "sameSite": "None"
-        },
-        {
-          "name": "mtcna",
-          "value": "Y2M2eXMzbWdrcDU1MTE=",
-          "domain": "hudong.alicdn.com",
-          "path": "/",
-          "expires": 1761387680.882592,
           "httpOnly": false,
           "secure": true,
           "sameSite": "None"
@@ -1488,51 +1118,81 @@
           "sameSite": "Lax"
         },
         {
-          "name": "acf_auth",
-          "value": "3ca7c8BSPh3L53eK9O3YXq0VIHCBVzn%2B45HoAfbflRlATIeEPfUAw6EMb02D1DyZRsuaUXMSj%2BZvlQDzQg1LWVarBMDrY7npOgTAIMLa9ZO03LQuADgMXtg",
+          "name": "LTP0",
+          "value": "f85fccwNoDiHM80xS5TI4jjLamNo5WpfjgnkK%2B%2Fo9NfH5bDibU1ElRQIse%2FJMesNuEQ%2FNYQHnpNoZwk7fyreS%2BwSw1tIJgaxXagrj3K7wq74BWpMLIcdr%2F5IGVhkDbSzBOaUNmcZlh56Nm0Yq6nYNJvYp0%2FpJOtNU37soAxPY7NJxeyK2%2FFPXCw1GunPpHOe2urTM",
+          "domain": "passport.douyu.com",
+          "path": "/",
+          "expires": 1778855867.799808,
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_avatar",
+          "value": "https%3A%2F%2Fapic.douyucdn.cn%2Fupload%2Favatar_v3%2F201906%2F2a9f2266e5db4d7888d02de252bdc0f0_",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.60466,
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "Hm_lvt_e99aee90ec1b2106afe7ec3b199020a7",
+          "value": "1763087868,1765014272",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": 1796948298,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_auth",
+          "value": "8102QkzjKPOwZgpinVzAly42ubPOdwJiKDvnZn5hsAofVaGbqY8%2BdU58%2Fcdsx9vC%2FuIpPVlBMQbwGkJZ8m0NjI7Ns4ZHnEhFJ4WDdMxk4caD8ih2wRgR1OU",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1765543474.041695,
           "httpOnly": true,
           "secure": false,
           "sameSite": "Lax"
         },
         {
           "name": "acf_jwt_token",
-          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzYwNzAxNTkzLCJhdWQiOlsiZHkiXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjEsInVpZCI6MzA0Mzg5NTg2LCJleHAiOjE3NjEzMDYzOTMsInN1YiI6InN0Iiwia2V5IjoiZHktand0LW1kNSIsInN0ayI6IjMyZWNhZmQ2ZmNhZjdmNjAifQ.MjdhNDc2NzkzMjIzMWY4ODVjYWY5M2NmZGM0ZmM0ZjA",
+          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzY1MDE0Mjc0LCJhdWQiOlsiZHkiXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjEsInVpZCI6MzA0Mzg5NTg2LCJleHAiOjE3NjU2MTkwNzQsInN1YiI6InN0Iiwia2V5IjoiZHktand0LW1kNSIsInN0ayI6ImFkZTNiZDgwMGZjMjhiM2QifQ.NDJlZDI1NzA3NTYzZDlmZmI1MTlmYWE1YmFkNzY4MmY",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604697,
+          "expires": 1765543474.041724,
           "httpOnly": true,
           "secure": false,
           "sameSite": "Lax"
         },
         {
           "name": "acf_dmjwt_token",
-          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzYwNzAxNTkzLCJhdWQiOlsiZG0iXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjEsInVpZCI6MzA0Mzg5NTg2LCJleHAiOjE3NjEzMDYzOTMsInN1YiI6InN0Iiwia2V5IjoiZHktand0LW1kNSIsInN0ayI6IjMyZWNhZmQ2ZmNhZjdmNjAifQ.MGJjNjI3OTgwYzQxNjJiZjg5YjZlZmZmZTBiOGQxOTM",
+          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzY1MDE0Mjc0LCJhdWQiOlsiZG0iXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjEsInVpZCI6MzA0Mzg5NTg2LCJleHAiOjE3NjU2MTkwNzQsInN1YiI6InN0Iiwia2V5IjoiZHktand0LW1kNSIsInN0ayI6ImFkZTNiZDgwMGZjMjhiM2QifQ.MmMwZGMzY2FlMGY1ODVjNzBlOWFhNDM5YWI5YzNhMTI",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604705,
+          "expires": 1765543474.041731,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
         },
         {
           "name": "dy_auth",
-          "value": "3ed1EhrAUyUVqXPYUDj9ndqkcTv904r1YXnNAgXgGaQs7jxMYmZvKZ4y8pq9tZCeVwZy1K1dioUUD%2BaLDHo3TJXyGoM2OU%2BsIv11Fy004ZFu%2Bx50cckDEhE",
+          "value": "665eHGkNMbwjb%2FXDaiZqFUTJpCXbuXaVA7e4D320nVne7rK9rpFK%2FDNZ%2F%2FeKWWZ6Yv096JyR8VaFtAG%2FUhmT9gqTFLfHzeJEDhf3i24Opj5iQm%2FLvTozLQI",
           "domain": ".douyu.com",
           "path": "/",
-          "expires": 1761230793.604712,
+          "expires": 1765543474.041738,
           "httpOnly": true,
           "secure": false,
           "sameSite": "Lax"
         },
         {
           "name": "wan_auth37wan",
-          "value": "3e901eb4ae35YhNZ8qdkL4d8XaUZ6NIc9RbBhgMea4OkbqSCJnPsSRZjB4QVrAlp7T%2BvbJEFi6%2FTAakzilC1dw82FR2m0QGFqGWckkTowbS3LVroO0g",
+          "value": "70f357d93dcdXz1fgclPhfer57N8TnA6O8gN5Eb3r66D15AfQSlZR9bOQZ0JiYm664Ce4HtPbCTLr1fSAQlIJ7b%2F9pGQY%2Fs1PN2pCd9qpF7Gi47%2FbIk",
           "domain": ".douyu.com",
           "path": "/",
-          "expires": 1761230793.604719,
+          "expires": 1765543474.041745,
           "httpOnly": true,
           "secure": false,
           "sameSite": "Lax"
@@ -1542,7 +1202,7 @@
           "value": "304389586",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604727,
+          "expires": 1765543474.041752,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -1552,7 +1212,7 @@
           "value": "304389586",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604732,
+          "expires": 1765543474.041757,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -1562,7 +1222,7 @@
           "value": "%E6%9C%80%E5%88%9D%E7%9A%84%E4%BD%A0212",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604737,
+          "expires": 1765543474.041762,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -1572,7 +1232,7 @@
           "value": "1",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604743,
+          "expires": 1765543474.041768,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -1582,7 +1242,7 @@
           "value": "1",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604749,
+          "expires": 1765543474.041778,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -1592,7 +1252,7 @@
           "value": "1",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604754,
+          "expires": 1765543474.041783,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -1602,7 +1262,7 @@
           "value": "0",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604765,
+          "expires": 1765543474.041794,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -1612,7 +1272,7 @@
           "value": "58684083",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.60477,
+          "expires": 1765543474.041799,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -1622,47 +1282,77 @@
           "value": "1",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604776,
+          "expires": 1765543474.041804,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
         },
         {
           "name": "acf_stk",
-          "value": "32ecafd6fcaf7f60",
+          "value": "ade3bd800fc28b3d",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761230793.604781,
+          "expires": 1765543474.041809,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_ab_pmt",
+          "value": "20100212%23webnewhome%23B%2C20100249%23webTagRank%23B%2C20100248%23webTagHover%23B%2C20100254%23WebTool0703%23new%2C1854%23newWebLive%23B%2C20100272%23all_lists_sort%23c%2C20100387%23roomIconAD%23B",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1783556298.536181,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_ab_ver_all",
+          "value": "20100212%2C20100249%2C20100248%2C20100254%2C1854%2C20100272%2C20100387",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1783556298.536527,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "acf_ab_vs",
+          "value": "webnewhome%3DB%2CwebTagRank%3DB%2CwebTagHover%3DB%2CWebTool0703%3Dnew%2CnewWebLive%3DB%2Call_lists_sort%3Dc%2CroomIconAD%3DB",
+          "domain": "www.douyu.com",
+          "path": "/",
+          "expires": 1783556298.536838,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
         },
         {
           "name": "acf_ccn",
-          "value": "546b81f0f8c15842a9a7ad5860f4cf8a",
+          "value": "99bc28abfb8da24cd4bb4641b219d10c",
           "domain": "www.douyu.com",
           "path": "/",
-          "expires": 1761017893.873161,
+          "expires": 1765415891.545731,
           "httpOnly": false,
           "secure": true,
           "sameSite": "Lax"
         },
         {
           "name": "post-csrfToken",
-          "value": "b895556fa6f6cbbe4b0756",
+          "value": "8e5e6f5d5903f76a5817d0",
           "domain": "msg.douyu.com",
           "path": "/",
-          "expires": 1761017897.000855,
+          "expires": 1765415895.929405,
           "httpOnly": false,
           "secure": true,
           "sameSite": "None"
         },
         {
           "name": "msg_auth",
-          "value": "d1fbcade049d9adb609dbc01bfd7a8583db9646a",
+          "value": "3b8e8b2f6bdec5dd45887e72201e1ed4a6c89bb2",
           "domain": ".msg.douyu.com",
           "path": "/",
-          "expires": 1761028697.114992,
+          "expires": 1765426696.14202,
           "httpOnly": true,
           "secure": false,
           "sameSite": "Lax"
@@ -1672,34 +1362,34 @@
           "value": "bLA640e14ZwM",
           "domain": ".msg.douyu.com",
           "path": "/",
-          "expires": 1761028697.115029,
+          "expires": 1765426696.142057,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
         },
         {
           "name": "acf_jwt_token",
-          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzYxMDEwNjk1LCJhdWQiOlsiZHkiXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjkzLCJ1aWQiOjMwNDM4OTU4NiwiZXhwIjoxNzYxNjE1NDk1LCJzdWIiOiJzdCIsImtleSI6ImR5LWp3dC1tZDUiLCJzdGsiOiJjZTg1Y2Y3MzliMWNkMjg0In0.ZTk3YTFjNzZiZWE3ZDNlZjRiZWQ5YjNhYjEzZjY2ODI",
+          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzY1NDA4Njk3LCJhdWQiOlsiZHkiXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjkzLCJ1aWQiOjMwNDM4OTU4NiwiZXhwIjoxNzY2MDEzNDk3LCJzdWIiOiJzdCIsImtleSI6ImR5LWp3dC1tZDUiLCJzdGsiOiI0OTY2YWNlODNjNjMzOWM4In0.NmZjYzk4MDk5NjdkNDQzYmE2ZmE2OTM1ZjFlMDJhODI",
           "domain": ".msg.douyu.com",
           "path": "/",
-          "expires": 1761028697.115036,
+          "expires": 1765426696.142065,
           "httpOnly": true,
           "secure": true,
           "sameSite": "Lax"
         },
         {
           "name": "acf_dmjwt_token",
-          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzYxMDEwNjk1LCJhdWQiOlsiZG0iXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjkzLCJ1aWQiOjMwNDM4OTU4NiwiZXhwIjoxNzYxNjE1NDk1LCJzdWIiOiJzdCIsImtleSI6ImR5LWp3dC1tZDUiLCJzdGsiOiJjZTg1Y2Y3MzliMWNkMjg0In0.NmU3MjE4MTUyZDAzZWYxMDVkYzU5OWIxYjk0ZTI4YjE",
+          "value": "eyJhbGciOiJtZDUiLCJ0eXAiOiJKV1QifQ.eyJjdCI6MCwiaWF0IjoxNzY1NDA4Njk3LCJhdWQiOlsiZG0iXSwibHRraWQiOjU4Njg0MDgzLCJiaXoiOjkzLCJ1aWQiOjMwNDM4OTU4NiwiZXhwIjoxNzY2MDEzNDk3LCJzdWIiOiJzdCIsImtleSI6ImR5LWp3dC1tZDUiLCJzdGsiOiI0OTY2YWNlODNjNjMzOWM4In0.NGU2NzcwZDgzZjc3M2NmMjNiZTcyOTgyYTJkZjRlZDg",
           "domain": ".msg.douyu.com",
           "path": "/",
-          "expires": 1761028697.115044,
+          "expires": 1765426696.142074,
           "httpOnly": false,
           "secure": true,
           "sameSite": "Lax"
         },
         {
           "name": "Hm_lpvt_e99aee90ec1b2106afe7ec3b199020a7",
-          "value": "1761014803",
+          "value": "1765412299",
           "domain": ".douyu.com",
           "path": "/",
           "expires": -1,
@@ -1708,8 +1398,18 @@
           "sameSite": "Lax"
         },
         {
+          "name": "_ga_5JKQ7DTEXC",
+          "value": "GS2.1.s1765372565$o44$g1$t1765412299$j60$l0$h2018465523",
+          "domain": ".douyu.com",
+          "path": "/",
+          "expires": 1799972299.476449,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
           "name": "post-csrfToken",
-          "value": "4t2mfohjh3f",
+          "value": "4ruh5qz6l99",
           "domain": "www.douyu.com",
           "path": "/",
           "expires": -1,
@@ -1722,17 +1422,7 @@
           "value": "1",
           "domain": "msg.douyu.com",
           "path": "/",
-          "expires": 1761015405,
-          "httpOnly": false,
-          "secure": false,
-          "sameSite": "Lax"
-        },
-        {
-          "name": "_ga_5JKQ7DTEXC",
-          "value": "GS2.1.s1761014088$o37$g1$t1761014814$j49$l0$h50723549",
-          "domain": ".douyu.com",
-          "path": "/",
-          "expires": 1795574814.034379,
+          "expires": 1765412897,
           "httpOnly": false,
           "secure": false,
           "sameSite": "Lax"
@@ -1741,12 +1431,12 @@
       "page_state": {
         "scroll_position": {
           "x": 0,
-          "y": 957
+          "y": 1000
         },
         "viewport": {
           "width": 1280,
           "height": 720
         },
-        "timestamp": 1761015399548
+        "timestamp": 1765412890618
       },
       "last_activity": 
